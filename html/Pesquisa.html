@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- TIRAR DEPOIS -->
+    <!-- <link href="../css/style.css" rel="stylesheet" /> -->
+
+    <!-- Importações para o Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Css Principal -->
+    <link rel="stylesheet" href="../cssTeste/main-style.css" />
+
+    <script>
+      $(document).ready(function() {
+        $("#divPesquisa").hide();
+        $("#divPesquisa2").hide();
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-md navbar-main">
+      <div class="container-fluid">
+        <!-- Logotipo -->
+        <a class="navbar-brand" href="#">MAKI</a>
+        <!-- Barra de navegação dobrável -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Opções da Barra de Navegação -->
+        <div class="navbar-collapse collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          <button class="btn btn-outline-success navbar-text" type="button">
+            Login
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div style="width: 70%; margin: 0 auto;">
+      <br /><br /><br /><br /><br /><br /><br />
+      <span>Pesquisa de Imóvel</span>
+      <hr />
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Propósito</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Aquisição</option>
+            <option>Locação</option>
+          </select>
+        </div>
+        <div class="col-sm-5">
+          <label>Bairro</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Centro</option>
+            <option>Fundinho</option>
+            <option>Nossa Senhora Aparecida</option>
+            <option>Martins</option>
+            <option>Osvaldo Rezende</option>
+            <option>Bom Jesus</option>
+            <option>Brasil</option>
+            <option>Cazeca</option>
+            <option>Lídice</option>
+            <option>Daniel Fonseca</option>
+            <option>Tabajaras </option>
+            <option>Presidente Roosevelt</option>
+            <option>Jardim Brasília</option>
+            <option>São José</option>
+            <option>Marta Helena</option>
+            <option>Pacaembu</option>
+            <option>Santa Rosa</option>
+            <option>Residencial Gramado</option>
+            <option>Nossa Senhora das Graças</option>
+            <option>Minas Gerais</option>
+            <option>Distrito Industrial Norte</option>
+            <option>Maravilha</option>
+            <option>Jaraguá</option>
+            <option>Planalto</option>
+            <option>Chácaras Tubalina</option>
+            <option>Chácaras Panorama</option>
+            <option>Luizote de Freitas</option>
+            <option>Jardim das Palmeiras</option>
+            <option>Jardim Patrícia</option>
+            <option>Jardim Holanda</option>
+            <option>Jardim Europa</option>
+            <option>Jardim Canaã</option>
+            <option>Mansour</option>
+            <option>Dona Zulmira</option>
+            <option>Taiaman</option>
+            <option>Guarani</option>
+            <option>Tocantins</option>
+            <option>Morada Nova</option>
+            <option>Morada do Sol</option>
+            <option>Monte Hebron</option>
+            <option>Residencial Pequis</option>
+            <option>Tubalina</option>
+            <option>Cidade Jardim</option>
+            <option>Nova Uberlândia</option>
+            <option>Patrimônio</option>
+            <option>Morada da Colina</option>
+            <option>Vigilato Pereira</option>
+            <option>Saraiva</option>
+            <option>Lagoinha</option>
+            <option>Carajás</option>
+            <option>Pampulha</option>
+            <option>Jardim Karaíba</option>
+            <option>Jardim Inconfidência</option>
+            <option>Santa Luzia</option>
+            <option>Granada</option>
+            <option>São Jorge</option>
+            <option>Laranjeiras</option>
+            <option>Shopping Park</option>
+            <option>Jardim Sul</option>
+            <option>Gávea</option>
+            <option>Seringueiras</option>
+            <option>Santa Mônica</option>
+            <option>Tibery</option>
+            <option>Segismundo Pereira</option>
+            <option>Umuarama</option>
+            <option>Alto Umuarama</option>
+            <option>Custódio Pereira</option>
+            <option>Aclimação</option>
+            <option>Mansões Aeroporto</option>
+            <option>Alvorada</option>
+            <option>Novo Mundo</option>
+            <option>Nova Alvorada</option>
+            <option>Morumbi</option>
+            <option>Residencial Integração</option>
+            <option>Morada dos Pássaros</option>
+            <option>Jardim Ipanema</option>
+            <option>Portal do Vale</option>
+            <option>Granja Marileusa</option>
+            <option>Grand Ville</option>
+            <option>Cruzeiro dos Peixotos</option>
+            <option>Martinésia</option>
+            <option>Tapuirama</option>
+            <option>Miraporanga</option>
+            <option>Miranda</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <label>Preço Mínimo</label>
+          <input id="precoMinimo" class="form-control" />
+        </div>
+        <div class="col-sm-2">
+          <label>Preço Máximo</label>
+          <input id="precoMaximo" class="form-control" />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-sm-12">
+          <label>Outras Informações</label>
+          <input id="outrasInfo" class="form-control" />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <button
+          id="botaoDivPesquisa"
+          style="width: 400px; margin: 0 auto"
+          type="button"
+          class="btn btn-primary"
+        >
+          Pesquisar
+        </button>
+      </div>
+    </div>
+    <br /><br /><br />
+    <div
+      id="divPesquisa"
+      class="divPesquisa"
+      style="width: 70%; margin: 0 auto; border: 1px solid gainsboro; border-radius: 10px; padding: 20px"
+    >
+      <div class="row">
+        <div class="col-sm-3" style="border-right: 2px solid gainsboro ">
+          <label>Descrição: </label>
+          <span>Casa boa</span>
+          <br />
+          <label>Banheiros: </label>
+          <span>2</span>
+          <br />
+          <label>Quartos: </label>
+          <span>2</span>
+          <br />
+          <label>Vagas na garagem:</label>
+          <span>1</span>
+          <br />
+          <label> Área:</label>
+          <span>120m²</span>
+          <br />
+          <label>Preço:</label>
+          <span>R$ 190.000,00</span>
+          <br />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap11.jpg" class="rounded float img" alt="..." />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap12.jpg" class="rounded float img" alt="..." />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap13.jpg" class="rounded float img" alt="..." />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-sm-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#modalTenhoInteresse"
+          >
+            Tenho interesse!
+          </button>
+        </div>
+        <div class="col-sm-10">
+          <button
+            style="margin-left: 59rem"
+            type="button"
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#modalMaisDetalhes"
+          >
+            Ver detalhes!
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div
+      id="divPesquisa2"
+      class="divPesquisa"
+      style="width: 70%; margin: 0 auto; border: 1px solid gainsboro; border-radius: 10px; padding: 20px"
+    >
+      <div class="row">
+        <div class="col-sm-3" style="border-right: 2px solid gainsboro ">
+          <label>Descrição: </label>
+          <span>Casa boa</span>
+          <br />
+          <label>Banheiros: </label>
+          <span>2</span>
+          <br />
+          <label>Quartos: </label>
+          <span>2</span>
+          <br />
+          <label>Vagas na garagem:</label>
+          <span>1</span>
+          <br />
+          <label> Área:</label>
+          <span>120m²</span>
+          <br />
+          <label>Preço:</label>
+          <span>R$ 190.000,00</span>
+          <br />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap21.jpg" class="rounded float img" alt="..." />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap22.jpg" class="rounded float img" alt="..." />
+        </div>
+        <div class="col-sm-3">
+          <img src="../img/ap23.jpg" class="rounded float img" alt="..." />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-sm-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#modalTenhoInteresse"
+          >
+            Tenho interesse!
+          </button>
+        </div>
+        <div class="col-sm-10">
+          <button
+            style="margin-left: 59rem"
+            type="button"
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#modalMaisDetalhes2"
+          >
+            Ver detalhes!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalMaisDetalhes">
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detalhes</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5>DESCRIÇÃO:</h5>
+            <br />
+            <p>Apartamento bonito</p>
+            <h5>FOTOS:</h5>
+            <img src="../img/ap11.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap12.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap13.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap14.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap15.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap16.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap17.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap18.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap19.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap110.jpg" class="rounded img-modal" alt="..." />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalMaisDetalhes2">
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detalhes</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5>DESCRIÇÃO:</h5>
+            <br />
+            <p>Apartamento bonito</p>
+            <h5>FOTOS:</h5>
+            <img src="../img/ap21.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap22.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap23.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap24.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap25.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap26.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap27.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap28.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap29.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap210.jpg" class="rounded img-modal" alt="..." />
+            <img src="../img/ap211.jpg" class="rounded img-modal" alt="..." />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      id="modalTenhoInteresse"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Interesse</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Nome Completo</label>
+                  <input id="nomeCompleto" class="form-control" />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>E-mail</label>
+                  <input id="email" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                  <label>Telefone</label>
+                  <input id="telefone" class="form-control" />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Descrição da proposta</label>
+                  <input id="descricaoProposta" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Enviar
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/teste.js"></script>
+  </body>
+</html>
+<style>
+  .img {
+    width: 15rem;
+    height: 12rem;
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+  .img-modal {
+    padding: 7px;
+    width: 15rem;
+    height: 12rem;
+    margin: auto;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+</style>
