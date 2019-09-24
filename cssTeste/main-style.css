@@ -34,6 +34,44 @@
   margin-bottom: 4px;
 }
 
+#barraNavegacaoRestrita {
+  display: none;
+}
+
+#barraNavegacaoRestrita.show {
+  display: block;
+}
+
+#barraNavegacaoRestrita.hide {
+  display: none;
+}
+
+#barraNavegacaoPublico {
+  display: block;
+}
+
+#barraNavegacaoPublico.show {
+  display: none;
+}
+
+
+#barraNavegacaoPublico.hide {
+  display: none;
+}
+
+/*****************
+-----DROPDOWN-----
+*****************/
+
+.dropdown-menu a {
+  color: rgb(65, 55, 102);
+}
+
+.dropdown-menu a:hover {
+  background-color: rgb(65, 55, 102);
+  color: #ffffff;
+}
+
 /***************
 -----IMAGE-----
 ***************/
@@ -237,4 +275,12 @@
   height: 5px;
   background-color: rgb(48, 46, 109);
   margin: 0 auto;
+}
+
+/**************
+-----ALERT-----
+**************/
+
+#alerta-invalido {
+  display: none; 
 }
