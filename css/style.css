@@ -1,21 +1,19 @@
 /***************
 -----NAVBAR-----
 ***************/
-
 .navbar-main {
   background-color: rgb(65, 55, 102);
 }
-
 .navbar-main-transp {
   background-color: rgba(65, 55, 102, 0.616);
 }
 
-.navbar-main-transp li {
+.navbar-main-transp li, .navbar-main li {
   padding-right: 10px;
   padding-left: 10px;
 }
 
-.navbar-main-transp a {
+.navbar-main-transp a, .navbar-main a {
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 400;
@@ -283,4 +281,15 @@
 
 #alerta-invalido {
   display: none; 
+}
+
+/**************
+-----ALERT-----
+**************/
+
+#listagem-resposta {
+  margin-top: 20px;
+  top: 100px;
+  bottom: 100px;
+  width: 100% !important;
 }
