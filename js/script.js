@@ -78,3 +78,8 @@ $('#botaoDivPesquisa').click(function () {
   $('#divPesquisa').show();
   $('#divPesquisa2').show();
 });
+
+$('.home').click(function (){
+    window.location.href = ((window.origin).concat('/html/Imobiliaria.html'));
+});
+
