@@ -12,13 +12,8 @@ $(window).scroll(function() {
 
 //Função para o botão Login
 $('.click-login').click(function() {
+    debugger
     $('#modal-login').modal("show")
-});
-
-//Função para o botão Sair
-$('.click-sair').click(function() {
-    //Fazer ir pra página inicial
-    window.location.href = ((window.origin).concat('/html/Imobiliaria.html'));
 });
 
 //Função para remover mensagem de erro do login
@@ -28,13 +23,14 @@ function removeMensagemErro() {
 
 //Função para validar o login
 $('#enviar-login').click(function () {
+    debugger
     var usuario = document.getElementById('user').value;
     var senha = document.getElementById('senha').value;
 
     if (usuario === 'admin' && senha === 'admin') {
         removeMensagemErro()
-        $("#barraNavegacaoRestrita").show()
         $("#barraNavegacaoPublico").hide()
+        $("#barraNavegacaoRestrita").show()
         $('#modal-login').modal("hide")
         //Adicionar um efeito de LOAD
     } else {
@@ -51,48 +47,8 @@ $('.close').click(removeMensagemErro())
 // Função para quando sair do modal sair a mensagem de erro
 $("#modal-login").on('hide.bs.modal', removeMensagemErro());
 
-//Funções para pesquisar - TELA LISTAGEM
-$('.pesquisar-funcionario').click(function (){
-    window.location.href = ((window.origin).concat('/html/Listagem/ListagemFuncionario.html'));
-});
-
-$('.pesquisar-cliente').click(function (){
-    window.location.href = ((window.origin).concat('/html/Listagem/ListagemCliente.html'));
-});
-
-$('.pesquisar-imoveis').click(function (){
-    window.location.href = ((window.origin).concat('/html/Listagem/ListagemImoveis.html'));
-});
-
-$('.pesquisar-interesses').click(function (){
-    window.location.href = ((window.origin).concat('/html/Listagem/ListagemInteresses.html'));
-});
-
-//Funções para pesquisar - TELA CADASTRO
-$('.cadastrar-funcionario').click(function (){
-    window.location.href = ((window.origin).concat('/html/CadastroFuncionario.html'));
-});
-
-$('.cadastrar-cliente').click(function (){
-    window.location.href = ((window.origin).concat('/html/CadastroCliente.html'));
-});
-
-$('.cadastrar-imovel').click(function (){
-    window.location.href = ((window.origin).concat('/html/CadastroImovel.html'));
-});
-
-//Função para ir na tela PESQUISAR IMÓVEIS
-$('.buscar-imoveis').click(function (){
-    window.location.href = ((window.origin).concat('/html/Pesquisa.html'));
-});
-
 $('#botaoDivPesquisa').click(function () {
     debugger
   $('#divPesquisa').show();
   $('#divPesquisa2').show();
 });
-
-$('.home').click(function (){
-    window.location.href = ((window.origin).concat('/html/Imobiliaria.html'));
-});
-

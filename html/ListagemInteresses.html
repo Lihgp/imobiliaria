@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Css Principal -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- Importações para o Bootstrap -->
     <link
@@ -44,7 +44,7 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active home" href="#">Home</a>
+                    <a class="nav-link active home" href="Imobiliaria.html">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -62,11 +62,22 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <a class="dropdown-item cadastrar-funcionario" href="#"
+                <a
+                  class="dropdown-item cadastrar-funcionario"
+                  href="CadastroFuncionario.html"
                   >Funcionários</a
                 >
-                <a class="dropdown-item cadastrar-cliente" href="#">Clientes</a>
-                <a class="dropdown-item cadastrar-imovel" href="#"> Imóveis</a>
+                <a
+                  class="dropdown-item cadastrar-cliente"
+                  href="CadastroCliente.html"
+                  >Clientes</a
+                >
+                <a
+                  class="dropdown-item cadastrar-imovel"
+                  href="CadastroImovel.html"
+                >
+                  Imóveis</a
+                >
               </div>
             </li>
 
@@ -86,18 +97,32 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <a class="dropdown-item pesquisar-funcionario" href="#"
+                <a
+                  class="dropdown-item pesquisar-funcionario"
+                  href="ListagemFuncionario.html"
                   >Funcionários</a
                 >
-                <a class="dropdown-item pesquisar-cliente" href="#">Clientes</a>
-                <a class="dropdown-item pesquisar-imoveis" href="#"> Imóveis</a>
-                <a class="dropdown-item pesquisar-interesses" href="#">
+                <a
+                  class="dropdown-item pesquisar-cliente"
+                  href="ListagemCliente.html"
+                  >Clientes</a
+                >
+                <a
+                  class="dropdown-item pesquisar-imoveis"
+                  href="ListagemImoveis.html"
+                >
+                  Imóveis</a
+                >
+                <a
+                  class="dropdown-item pesquisar-interesses"
+                  href="ListagemInteresses.html"
+                >
                   Interesses</a
                 >
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link click-sair" href="#">Sair</a>
+              <a class="nav-link click-sair" href="Imobiliaria.html">Sair</a>
             </li>
           </ul>
         </div>
@@ -108,56 +133,28 @@
     <!-- Pesquisa de Funcionario -->
     <section class="box-section" style="margin-top: 30px">
       <div class="container">
-        <h2>Listagem de Imóveis</h2>
+        <h2>Listagem de Interesses</h2>
         <hr />
         <div class="row">
-          <div class="col-sm-4">
-            <label>Proprietário</label>
-            <input id="prop" class="form-control" />
-          </div>
-          <div class="col-sm-4">
-            <label>Locação/Venda</label>
-            <input id="locVen" class="form-control" />
-          </div>
-          <div class="col-sm-4">
-            <label>Tipo de Imóvel</label>
-            <input id="tipo" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-2">
-            <label>Qtde de Quartos </label>
-            <input id="qtdQuarto" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Qtde de Suites</label>
-            <input id="qtdSuite" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Qtde Salas de Estar</label>
-            <input id="qtdSalasEstar" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Qtde Salas de Jantar</label>
-            <input id="qtdSalasJantar" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Nro Vagas</label>
-            <input id="vagas" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Área</label>
-            <input id="area" class="form-control" />
+          <div class="col-sm-12">
+            <label>Nome Completo</label>
+            <input id="nome" class="form-control" />
           </div>
         </div>
         <br />
         <div class="row">
           <div class="col-sm-6">
-            <label>Armário</label>
-            <input id="arm" class="form-control" />
+            <label>Email</label>
+            <input id="email" class="form-control" />
           </div>
           <div class="col-sm-6">
+            <label>Telefone</label>
+            <input id="tel" class="form-control" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-sm-12">
             <label>Descrição</label>
             <input id="desc" class="form-control" />
           </div>
@@ -179,21 +176,14 @@
     <!-- Fim Pesquisa Funcionário -->
     <!-- Resultado Pesquisa -->
     <section class="box-section">
-      <div class="container-fluid   ">
+      <div class="container">
         <table class="table table-striped" id="listagem-resposta">
           <thead>
             <tr>
               <th scope="col"></th>
-              <th scope="col">Proprietário</th>
-              <th scope="col">Locação/Venda</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Qtde Quartos</th>
-              <th scope="col">Qtde Suites</th>
-              <th scope="col">Qtde Salas Estar</th>
-              <th scope="col">Qtde Salar Jantar</th>
-              <th scope="col">Nro Vagas</th>
-              <th scope="col">Área</th>
-              <th scope="col">Armário</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefone</th>
               <th scope="col">Descrição</th>
             </tr>
           </thead>
@@ -201,65 +191,51 @@
             <tr>
               <th scope="row">1</th>
               <td>Fulano</td>
-              <td>Locação</td>
-              <td>Casa</td>
-              <td>3</td>
-              <td>2</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>500m²</td>
-              <td>Sim</td>
-              <td>Nada</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Fulano</td>
-              <td>Locação</td>
-              <td>Casa</td>
-              <td>3</td>
-              <td>2</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>500m²</td>
-              <td>Sim</td>
-              <td>Nada</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Fulano</td>
-              <td>Locação</td>
-              <td>Casa</td>
-              <td>3</td>
-              <td>2</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>500m²</td>
-              <td>Sim</td>
-              <td>Nada</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
             </tr>
             <tr>
               <th scope="row">4</th>
               <td>Fulano</td>
-              <td>Locação</td>
-              <td>Casa</td>
-              <td>3</td>
-              <td>2</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>500m²</td>
-              <td>Sim</td>
-              <td>Nada</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Fulano</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>Fulano</td>
+              <td>teste@gmail.com</td>
+              <td>99999-9999</td>
+              <td>Descrição teste</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
     <!-- JavaScript -->
-    <script src="/js/script.js"></script>
+    <script src="../js/script.js"></script>
 
     <script src="/font-awesome/js/all.js"></script>
   </body>

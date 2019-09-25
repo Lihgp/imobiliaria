@@ -32,6 +32,10 @@
   margin-bottom: 4px;
 }
 
+.navbar-nav li a:hover {
+  color:  rgb(125, 125, 126);
+}
+
 #barraNavegacaoRestrita {
   display: none;
 }
@@ -292,4 +296,13 @@
   top: 100px;
   bottom: 100px;
   width: 100% !important;
+}
+
+#login {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#login:hover{
+  color:  rgb(125, 125, 126);
 }
