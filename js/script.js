@@ -68,6 +68,19 @@ $('.pesquisar-interesses').click(function (){
     window.location.href = ((window.origin).concat('/html/Listagem/ListagemInteresses.html'));
 });
 
+//Funções para pesquisar - TELA CADASTRO
+$('.cadastrar-funcionario').click(function (){
+    window.location.href = ((window.origin).concat('/html/CadastroFuncionario.html'));
+});
+
+$('.cadastrar-cliente').click(function (){
+    window.location.href = ((window.origin).concat('/html/CadastroCliente.html'));
+});
+
+$('.cadastrar-imovel').click(function (){
+    window.location.href = ((window.origin).concat('/html/CadastroImovel.html'));
+});
+
 //Função para ir na tela PESQUISAR IMÓVEIS
 $('.buscar-imoveis').click(function (){
     window.location.href = ((window.origin).concat('/html/Pesquisa.html'));
