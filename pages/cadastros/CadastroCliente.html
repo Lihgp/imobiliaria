@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    
     <!-- Font Awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     
     <!-- Css Principal -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
 
     <!-- Importações para o Bootstrap -->
     <link
@@ -46,7 +46,7 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active home" href="Imobiliaria.html">Home</a>
+              <a class="nav-link active home" href="../../index.html">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -66,17 +66,17 @@
               >
                 <a
                   class="dropdown-item cadastrar-funcionario"
-                  href="CadastroFuncionario.html"
+                  href="../cadastros/CadastroFuncionario.html"
                   >Funcionários</a
                 >
                 <a
                   class="dropdown-item cadastrar-cliente"
-                  href="CadastroCliente.html"
+                  href="../cadastros/CadastroCliente.html"
                   >Clientes</a
                 >
                 <a
                   class="dropdown-item cadastrar-imovel"
-                  href="CadastroImovel.html"
+                  href="../cadastros/CadastroImovel.html"
                 >
                   Imóveis</a
                 >
@@ -101,30 +101,30 @@
               >
                 <a
                   class="dropdown-item pesquisar-funcionario"
-                  href="ListagemFuncionario.html"
+                  href="../listagens/ListagemFuncionario.html"
                   >Funcionários</a
                 >
                 <a
                   class="dropdown-item pesquisar-cliente"
-                  href="ListagemCliente.html"
+                  href="../listagens/ListagemCliente.html"
                   >Clientes</a
                 >
                 <a
                   class="dropdown-item pesquisar-imoveis"
-                  href="ListagemImoveis.html"
+                  href="../listagens/ListagemImoveis.html"
                 >
                   Imóveis</a
                 >
                 <a
                   class="dropdown-item pesquisar-interesses"
-                  href="ListagemInteresses.html"
+                  href="../listagens/ListagemInteresses.html"
                 >
                   Interesses</a
                 >
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link click-sair" href="Imobiliaria.html">Sair</a>
+              <a class="nav-link click-sair" href="../../index.html">Sair</a>
             </li>
           </ul>
         </div>
@@ -134,7 +134,7 @@
     <br /><br /><br /><br /><br /><br />
     <form>
       <div class="container">
-        <h1>Cadastrar Funcionário</h1>
+        <h1>Cadastrar Cliente Proprietário</h1>
         <hr />
         <br />
         <div class="form-group row">
@@ -205,35 +205,65 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="dataIngressao" class="col-sm-2 col-form-label"
-            >Data Ingresso</label
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-4">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="col-sm-2"><label>Sexo</label></div>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="masculino"
+                value="masculino"
+                checked
+              />
+              <label class="form-check-label" for="masculino">
+                Masculino
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="feminino"
+                value="feminino"
+              />
+              <label class="form-check-label" for="feminino">
+                Feminino
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="estadoCivil" class="col-sm-2 col-form-label"
+            >Estado Civil</label
           >
-          <div class="col-sm-2">
-            <input
-              type="date"
-              class="form-control"
-              id="dataIngressao"
-              placeholder="Data Ingresso"
-            />
-          </div>
-          <div class="col-sm-1"></div>
-          <label for="cargo" class="col-sm-1 col-form-label">Cargo</label>
-          <div class="col-sm-2">
+          <div class="col-sm-4">
             <input
               type="text"
               class="form-control"
-              id="cargo"
-              placeholder="Cargo"
+              id="estadoCivil"
+              placeholder="Estado Civil"
             />
           </div>
-          <div class="col-sm-1"></div>
-          <label for="salario" class="col-sm-1 col-form-label">Salário</label>
-          <div class="col-sm-2">
+          <label for="profissao" class="col-sm-2 col-form-label"
+            >Profissão</label
+          >
+          <div class="col-sm-4">
             <input
               type="text"
               class="form-control"
-              id="salario"
-              placeholder="Salário"
+              id="profissao"
+              placeholder="Profissão"
             />
           </div>
         </div>
@@ -249,8 +279,8 @@
         </div>
       </div>
     </form>
+    <!-- JavaScript -->
+    <script src="../../assets/js/script.js"></script>
   </body>
-  <!-- JavaScript -->
-  <script src="../js/script.js"></script>
 </html>
 <style></style>
