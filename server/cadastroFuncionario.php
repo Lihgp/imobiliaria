@@ -4,7 +4,7 @@ require "connection/conexao.php";
 
 $conn = conectaBanco();
 
-$nome = $telefone = $telefoneCelular = $outroTelefone = $cpf = $dataIngressao = $cargo = $salario = $cep = $logradouro = $numero = $estado = $cidade = $bairro = $login = $senha = "";
+$nome = $telefone = $telefoneCelular = $outroTelefone = $cpf = $dataIngresso = $cargo = $salario = $cep = $logradouro = $numero = $estado = $cidade = $bairro = $login = $senha = "";
 
 if (!isset($_POST["nome"]))
     throw new Exception("O nome do funcionário deve ser fornecido.");
@@ -16,6 +16,8 @@ if (!isset($_POST["outroTelefone"]))
     throw new Exception("O Outro telefone do funcionário deve ser fornecido.");
 if (!isset($_POST["cpf"]))
     throw new Exception("O cpf do funcionário deve ser fornecido.");
+if (!isset($_POST["dataIngresso"]))
+    throw new Exception("A data de ingressão do funcionário deve ser fornecida.");
 if (!isset($_POST["cargo"]))
     throw new Exception("O cargo do funcionário deve ser fornecido.");
 if (!isset($_POST["salario"]))
@@ -29,13 +31,13 @@ if (!isset($_POST["numero"]))
 if (!isset($_POST["estado"]))
     throw new Exception("O estado do funcionário deve ser fornecido.");
 if (!isset($_POST["cidade"]))
-    throw new Exception("A cidade do funcionário deve ser fornecido.");
+    throw new Exception("A cidade do funcionário deve ser fornecida.");
 if (!isset($_POST["bairro"]))
     throw new Exception("O bairro do funcionário deve ser fornecido.");
 if (!isset($_POST["usuarioFuncionario"]))
     throw new Exception("O login do funcionário deve ser fornecido.");
 if (!isset($_POST["senha"]))
-    throw new Exception("A senha do funcionário deve ser fornecido.");
+    throw new Exception("A senha do funcionário deve ser fornecida.");
 
 
 $nome = filtraEntradaForm($_POST["nome"]);
@@ -43,6 +45,7 @@ $telefone = filtraEntradaForm($_POST["telefone"]);
 $telefoneCelular = filtraEntradaForm($_POST["telefone"]);
 $outroTelefone = filtraEntradaForm($_POST["outroTelefone"]);
 $cpf = filtraEntradaForm($_POST["cpf"]);
+$dataIngresso = filtraEntradaForm($_POST["dataIngresso"]);
 $cargo = filtraEntradaForm($_POST["cargo"]);
 $salario = converteDecimalSalvarBanco(filtraEntradaForm($_POST["salario"]));
 $cep = filtraEntradaForm($_POST["cep"]);
@@ -59,11 +62,13 @@ if ($nome == "")
 if ($telefone == "")
     throw new Exception("O telefone funcionário deve ser fornecido.");
 if ($telefoneCelular == "")
-    throw new Exception("O telefone celular funcionário deve ser fornecido. $telefoneCelular aaaaa");
+    throw new Exception("O telefone celular funcionário deve ser fornecido.");
 if ($outroTelefone == "")
     throw new Exception("O Outro telefone do funcionário deve ser fornecido.");
 if ($cpf == "")
     throw new Exception("O cpf do funcionário deve ser fornecido.");
+if ($dataIngresso == "")
+    throw new Exception("A data de ingressão do funcionário deve ser fornecida.");
 if ($cargo == "")
     throw new Exception("O cargo do funcionário deve ser fornecido.");
 if ($salario == "")
@@ -85,13 +90,13 @@ if ($login == "")
 if ($senha == "")
     throw new Exception("A senha do funcionário deve ser fornecido.");
 
-// verificaCpfJaCadastrado($cpf, $conn);
+verificaCpfJaCadastrado($cpf, $conn);
 
 try 
 {
     $conn->begin_transaction();
 
-    $codFuncionario = cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn);
+    $codFuncionario = cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $dataIngresso, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn);
     cadastrarLoginFuncionario($login, $senha, $codFuncionario, $conn);
     echo "OK";
     $conn->commit();
@@ -127,9 +132,9 @@ function cadastrarLoginFuncionario($login, $senha, $codFuncionario, $conn)  {
         throw new Exception("Erro ao cadastrar Login do Usuário.");
 }
 
-function cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn) {
-    $sqlCadastrarFuncionario = "INSERT INTO funcionario(nome, telefone, telefoneCelular, telefoneContato, cpf, cargo, salario, cep, logradouro, numero, estado, cidade, bairro)
-        VALUES ('$nome', '$telefone', '$telefoneCelular', '$outroTelefone', '$cpf', '$cargo', '$salario', '$cep', '$logradouro', '$numero', '$estado', '$cidade', '$bairro')";
+function cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $dataIngresso, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn) {
+    $sqlCadastrarFuncionario = "INSERT INTO funcionario(nome, telefone, telefoneCelular, telefoneContato, cpf, dataIngressao, cargo, salario, cep, logradouro, numero, estado, cidade, bairro)
+        VALUES ('$nome', '$telefone', '$telefoneCelular', '$outroTelefone', '$cpf', '$cargo', '$salario', '$cep', '$dataIngresso', '$logradouro', '$numero', '$estado', '$cidade', '$bairro')";
 
     if (!$conn->query($sqlCadastrarFuncionario))
         throw new Exception("Erro ao cadastrar Funcionário.");
@@ -161,5 +166,9 @@ function converteDecimalSalvarBanco($valor) {
     }
     return $valor;
 }
+
+// function formataDataSalvarBanco($data) {
+//     $data = str_replace("")
+// }
 
 ?>
