@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <title>Listagem de Funcionário</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
 
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
@@ -19,6 +22,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Importações para usar as máscaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -135,97 +141,90 @@
 
     <!-- Pesquisa de Funcionario -->
     <section class="box-section" style="margin-top: 30px">
-      <div class="container">
-        <h2>Listagem de Funcionários</h2>
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Buscar Funcionários</h2>
         <hr />
-        <div class="row">
-          <div class="col-sm-8">
-            <label>Nome</label>
-            <input id="nome" class="form-control" />
+        <form action="#" method="GET">
+          <div class="form-row">
+            <div class="col-sm-8">
+              <label class="label-cadastro">Nome</label>
+              <input id="nome" class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">CPF</label>
+              <input id="cpf" class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Telefone</label>
+              <input maxlength="10" id="telefone" class="form-control" />
+            </div>
           </div>
-          <div class="col-sm-2">
-            <label>Telefone</label>
-            <input id="telefone" class="form-control" />
+          <br />
+          <div class="form-row">
+            <div class="col-sm-8">
+              <label class="label-cadastro">Cargo</label>
+              <select class="form-control" id="selectCargo">
+                <option value="todos">Todos</option>
+                <option value="solteiro">Solteiro</option>
+                <option value="casado">Casado</option>
+                <option value="casado">Separado</option>
+                <option value="casado">Divorciado</option>
+                <option value="casado">Viúvo</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Data de Ingresso</label>
+              <input
+                placeholder="Ex.: 00/00/0000"
+                id="dataIngresso"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-sm-2">
+              <label class="label-cadastro">Salário</label>
+              <input maxlength="24" id="salario" class="form-control" />
+            </div>
           </div>
-          <div class="col-sm-2">
-            <label>CPF</label>
-            <input id="cpf" class="form-control" />
+
+          <br />
+          <div class="form-row">
+            <button
+              id="botaoDivPesquisa"
+              type="button"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Pesquisar
+            </button>
           </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-8">
-            <label>Endereço</label>
-            <input id="endereco" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Telefone Contato</label>
-            <input id="telefoneCon" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Telefone Celular</label>
-            <input id="telefoneCel" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-4">
-            <label>Data Ingresso</label>
-            <input id="datIng" class="form-control" />
-          </div>
-          <div class="col-sm-4">
-            <label>Cargo</label>
-            <input id="cargo" class="form-control" />
-          </div>
-          <div class="col-sm-4">
-            <label>Salário</label>
-            <input id="salario" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-          <button
-            id="botaoDivPesquisa"
-            style="width: 400px; margin: 0 auto"
-            type="button"
-            class="btn btn-primary"
-          >
-            Pesquisar
-          </button>
-        </div>
+        </form>
       </div>
     </section>
     <!-- Fim Pesquisa Funcionário -->
     <!-- Resultado Pesquisa -->
     <section class="box-section">
-      <div class="container">
+        <div class="table-responsive container caixa-resultado-pesquisa">
         <table class="table table-striped" id="listagem-resposta">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">Nome</th>
               <th scope="col">Telefone</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Endereço</th>
-              <th scope="col">Telefone Contato</th>
-              <th scope="col">Telefone Celular</th>
-              <th scope="col">Data Ingresso</th>
+              <th scope="col">CPF</th>              
               <th scope="col">Cargo</th>
+              <th scope="col">Data Ingresso</th>
               <th scope="col">Salário</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td>Fulano</td>
+              <td>FulanoFulanoFulanoFulanoF</td>
               <td>99999-9999</td>
               <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
               <td>Gerente</td>
+              <td>10/05/2000</td>
               <td>R$30.000,00</td>
             </tr>
             <tr>
@@ -233,64 +232,13 @@
               <td>Fulano</td>
               <td>99999-9999</td>
               <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
               <td>Gerente</td>
+              <td>3232-3232</td>
               <td>R$30.000,00</td>
             </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
-              <td>Gerente</td>
-              <td>R$30.000,00</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
-              <td>Gerente</td>
-              <td>R$30.000,00</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
-              <td>Gerente</td>
-              <td>R$30.000,00</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>3333-3333</td>
-              <td>3232-3232</td>
-              <td>10/05/2000</td>
-              <td>Gerente</td>
-              <td>R$30.000,00</td>
-            </tr>
+            
           </tbody>
         </table>
-      </div>
     </section>
     <!-- JavaScript -->
     <script src="../../assets/js/script.js"></script>

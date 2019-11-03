@@ -158,6 +158,12 @@
   box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.caixa-resultado-pesquisa {
+  background-color: #fff;
+  padding: 0px !important;
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
 .caixa-objetivos {
   padding: 2.5rem 1.25rem;
   position: relative;
@@ -335,7 +341,26 @@
 #area::-moz-placeholder {
   text-align: right;
 }
-​
+
+/***************
+-----TABELA-----
+***************/
+
+table thead th {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(86, 85, 141);
+  color: #fff;
+  padding: 0.6rem !important;
+  font-size: 0.9rem;
+}
+
+table {
+  border: 0px !important;
+}
+
+table tr:hover {
+  background-color: #d5dadd !important;
+}
 
 /* ------------------------------ */
 
