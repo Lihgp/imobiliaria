@@ -2,11 +2,15 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
+    <title>Cadastro de Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
@@ -18,8 +22,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Importações para usar as máscaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
   </head>
-  <body>
+  <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
     <nav
       class="navbar navbar-expand-md navbar-main fixed-top"
@@ -131,154 +138,221 @@
       </div>
     </nav>
     <!--Fim Barra de Navegação-->
-    <br /><br /><br /><br /><br /><br />
-    <form>
-      <div class="container">
-        <h1>Cadastrar Cliente Proprietário</h1>
+    <!-- Início Filtros para pesquisar imóveis -->
+    <section class="box-section" style="margin-top: 30px">
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Cadastrar Cliente</h2>
         <hr />
-        <br />
-        <div class="form-group row">
-          <label for="nome" class="col-sm-2 col-form-label">Nome</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              class="form-control"
-              id="nome"
-              placeholder="Nome"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="telefone"
-              placeholder="Telefone"
-            />
-          </div>
-          <div class="col-sm-1"></div>
-          <label for="cpf" class="col-sm-1 col-form-label">Cpf</label>
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="cpf"
-              placeholder="Cpf"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="endereco" class="col-sm-2 col-form-label">Endereço</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              class="form-control"
-              id="endereco"
-              placeholder="Endereço"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="telefoneContato" class="col-sm-2 col-form-label"
-            >Telefone Contato</label
-          >
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="telefoneContato"
-              placeholder="Telefone Contato"
-            />
-          </div>
-          <label for="telefoneCelular" class="col-sm-2 col-form-label"
-            >Telefone Celular</label
-          >
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="telefoneCelular"
-              placeholder="Telefone Celular"
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-4">
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="Email"
-            />
-          </div>
-          <div class="col-sm-2"><label>Sexo</label></div>
-          <div class="col-sm-4">
-            <div class="form-check form-check-inline">
+        <form method="POST" action="#" class="needs-validation" novalidate>
+          <h4 class="subtitulo">Dados Pessoais</h4>
+          <div class="form-group row">
+            <label for="nome" class="col-sm-1 col-form-label label-cadastro"
+              >Nome</label
+            >
+            <div class="col-sm-11">
               <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="masculino"
-                value="masculino"
-                checked
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="nome"
+                placeholder="Seu nome completo"
               />
-              <label class="form-check-label" for="masculino">
-                Masculino
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="feminino"
-                value="feminino"
-              />
-              <label class="form-check-label" for="feminino">
-                Feminino
-              </label>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="estadoCivil" class="col-sm-2 col-form-label"
-            >Estado Civil</label
-          >
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="estadoCivil"
-              placeholder="Estado Civil"
-            />
+          <div class="form-group row">
+            <label for="cpf" class="col-sm-1 col-form-label label-cadastro"
+              >Cpf</label
+            >
+            <div class="col-sm-2">
+              <input required type="text" class="form-control" id="cpf" />
+            </div>
+
+            <label class="col-sm-1 col-form-label label-cadastro">Sexo</label>
+            <div class="col-sm-3">
+              <div class="form-check form-check-inline">
+                <input
+                  required
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="masculino"
+                  value="masculino"
+                />
+                <label
+                  class="form-check-label label-check-sexo"
+                  for="masculino"
+                >
+                  Masculino
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  required
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="feminino"
+                  value="feminino"
+                />
+                <label class="form-check-label label-check-sexo" for="feminino">
+                  Feminino
+                </label>
+              </div>
+            </div>
+            <label
+              for="estadoCivil"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Estado Civil</label
+            >
+            <div class="col-sm-3">
+              <select required class="form-control" id="selectEstadoCivil">
+                <option value="solteiro">Solteiro</option>
+                <option value="casado">Casado</option>
+                <option value="casado">Separado</option>
+                <option value="casado">Divorciado</option>
+                <option value="casado">Viúvo</option>
+              </select>
+            </div>
           </div>
-          <label for="profissao" class="col-sm-2 col-form-label"
-            >Profissão</label
-          >
-          <div class="col-sm-4">
-            <input
-              type="text"
-              class="form-control"
-              id="profissao"
-              placeholder="Profissão"
-            />
+
+          <div class="form-group row">
+            <label for="celular" class="col-sm-1 col-form-label label-cadastro"
+              >Celular</label
+            >
+            <div class="col-sm-2">
+              <input
+                required
+                maxlength="10"
+                class="form-control"
+                id="celular"
+              />
+            </div>
+            <label
+              for="outroTelefone"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Outro Telefone</label
+            >
+            <div class="col-sm-2">
+              <input maxlength="10" class="form-control" id="outroTelefone" />
+            </div>
+            <label for="email" class="col-sm-1 col-form-label label-cadastro"
+              >Email</label
+            >
+            <div class="col-sm-4">
+              <input
+                required
+                maxlength="255"
+                type="email"
+                class="form-control"
+                id="email"
+              />
+              <div class="invalid-feedback">
+                Informe um email válido
+              </div>
+            </div>
           </div>
-        </div>
-        <br /><br />
-        <div class="form-group row">
-          <button
-            type="submit"
-            class="btn btn-success btn-lg"
-            style="width: 200px; margin: 0 auto"
-          >
-            Salvar
-          </button>
-        </div>
+
+          <div class="form-group row">
+            <label
+              for="profissao"
+              class="col-sm-1 col-form-label label-cadastro"
+              >Profissão</label
+            >
+            <div class="col-sm-6">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="profissao"
+              />
+            </div>
+          </div>
+          <h4 class="subtitulo">Endereço</h4>
+          <div class="form-group row">
+            <label for="cep" class="col-sm-1 col-form-label label-cadastro"
+              >Cep</label
+            >
+            <div class="col-sm-2">
+              <input required type="text" class="form-control" id="cep" />
+            </div>
+            <label
+              for="logradouro"
+              class="col-sm-1 col-form-label label-cadastro"
+              >Logradouro</label
+            >
+            <div class="col-sm-5">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="logradouro"
+              />
+            </div>
+            <label for="numero" class="col-sm-1 col-form-label label-cadastro"
+              >Número</label
+            >
+            <div class="col-sm-2">
+              <input required maxlength="4" class="form-control" id="numero" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="estado" class="col-sm-1 col-form-label label-cadastro"
+              >Estado</label
+            >
+            <div class="col-sm-2">
+              <input
+                required
+                type="text"
+                class="form-control"
+                id="estado"
+                placeholder="UF"
+              />
+            </div>
+
+            <label for="cidade" class="col-sm-1 col-form-label label-cadastro"
+              >Cidade</label
+            >
+            <div class="col-sm-4">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="cidade"
+              />
+            </div>
+
+            <label for="bairro" class="col-sm-1 col-form-label label-cadastro"
+              >Bairro</label
+            >
+            <div class="col-sm-3">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="bairro"
+              />
+            </div>
+          </div>
+
+          <br /><br />
+          <div class="form-group row">
+            <button
+              type="submit"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </section>
     <!-- JavaScript -->
     <script src="../../assets/js/script.js"></script>
   </body>

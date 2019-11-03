@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <title>Pesquisar Imóveis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
@@ -20,6 +23,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <!-- Importações para usar as máscaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
     <script>
       $(document).ready(function() {
         $("#divPesquisa").hide();
@@ -27,71 +33,71 @@
       });
     </script>
   </head>
-  <body>
+  <body class="box-section">
     <!-- Modal -->
     <div class="modal fade" id="modal-login" data-focus="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-              <h4 class="modal-title w-100 font-weight-bold">Login</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                title="Fechar"
-              >
-                <span aria-hidden="true">&times;</span>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              title="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <!-- <form> -->
+            <!-- <div class="md-form mb-5"> -->
+
+            <div
+              class="alert alert-danger"
+              id="alerta-invalido"
+              role="alert"
+            ></div>
+
+            <div class="md-form input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-user grey-text"></i>
+                </div>
+              </div>
+              <input
+                required
+                type="text"
+                id="user"
+                class="form-control validate"
+                placeholder="Usuário"
+              />
+            </div>
+
+            <div class="md-form input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-envelope grey-text"></i>
+                </div>
+              </div>
+              <input
+                required
+                type="password"
+                id="senha"
+                class="form-control validate"
+                placeholder="Senha"
+              />
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-roxo" id="enviar-login">
+                Enviar
               </button>
             </div>
-            <div class="modal-body mx-3">
-              <!-- <form> -->
-                <!-- <div class="md-form mb-5"> -->
-  
-                <div
-                  class="alert alert-danger"
-                  id="alerta-invalido"
-                  role="alert"
-                ></div>
-  
-                <div class="md-form input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-user grey-text"></i>
-                    </div>
-                  </div>
-                  <input
-                    required
-                    type="text"
-                    id="user"
-                    class="form-control validate"
-                    placeholder="Usuário"
-                  />
-                </div>
-  
-                <div class="md-form input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-envelope grey-text"></i>
-                    </div>
-                  </div>
-                  <input
-                    required
-                    type="password"
-                    id="senha"
-                    class="form-control validate"
-                    placeholder="Senha"
-                  />
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <button class="btn btn-roxo" id="enviar-login">
-                    Enviar
-                  </button>
-                </div>
-              <!-- </form> -->
-            </div>
+            <!-- </form> -->
           </div>
         </div>
       </div>
+    </div>
     <!-- Barra de Navegação PÚBLICO-->
     <nav
       class="navbar navbar-expand-md navbar-main fixed-top"
@@ -245,137 +251,141 @@
       </div>
     </nav>
     <!--Fim Barra de Navegação-->
-
-    <div style="width: 70%; margin: 0 auto;">
-      <br /><br /><br /><br /><br /><br /><br />
-      <span>Pesquisa de Imóvel</span>
-      <hr />
-      <div class="row">
-        <div class="col-sm-3">
-          <label>Propósito</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Aquisição</option>
-            <option>Locação</option>
-          </select>
-        </div>
-        <div class="col-sm-5">
-          <label>Bairro</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Centro</option>
-            <option>Fundinho</option>
-            <option>Nossa Senhora Aparecida</option>
-            <option>Martins</option>
-            <option>Osvaldo Rezende</option>
-            <option>Bom Jesus</option>
-            <option>Brasil</option>
-            <option>Cazeca</option>
-            <option>Lídice</option>
-            <option>Daniel Fonseca</option>
-            <option>Tabajaras </option>
-            <option>Presidente Roosevelt</option>
-            <option>Jardim Brasília</option>
-            <option>São José</option>
-            <option>Marta Helena</option>
-            <option>Pacaembu</option>
-            <option>Santa Rosa</option>
-            <option>Residencial Gramado</option>
-            <option>Nossa Senhora das Graças</option>
-            <option>Minas Gerais</option>
-            <option>Distrito Industrial Norte</option>
-            <option>Maravilha</option>
-            <option>Jaraguá</option>
-            <option>Planalto</option>
-            <option>Chácaras Tubalina</option>
-            <option>Chácaras Panorama</option>
-            <option>Luizote de Freitas</option>
-            <option>Jardim das Palmeiras</option>
-            <option>Jardim Patrícia</option>
-            <option>Jardim Holanda</option>
-            <option>Jardim Europa</option>
-            <option>Jardim Canaã</option>
-            <option>Mansour</option>
-            <option>Dona Zulmira</option>
-            <option>Taiaman</option>
-            <option>Guarani</option>
-            <option>Tocantins</option>
-            <option>Morada Nova</option>
-            <option>Morada do Sol</option>
-            <option>Monte Hebron</option>
-            <option>Residencial Pequis</option>
-            <option>Tubalina</option>
-            <option>Cidade Jardim</option>
-            <option>Nova Uberlândia</option>
-            <option>Patrimônio</option>
-            <option>Morada da Colina</option>
-            <option>Vigilato Pereira</option>
-            <option>Saraiva</option>
-            <option>Lagoinha</option>
-            <option>Carajás</option>
-            <option>Pampulha</option>
-            <option>Jardim Karaíba</option>
-            <option>Jardim Inconfidência</option>
-            <option>Santa Luzia</option>
-            <option>Granada</option>
-            <option>São Jorge</option>
-            <option>Laranjeiras</option>
-            <option>Shopping Park</option>
-            <option>Jardim Sul</option>
-            <option>Gávea</option>
-            <option>Seringueiras</option>
-            <option>Santa Mônica</option>
-            <option>Tibery</option>
-            <option>Segismundo Pereira</option>
-            <option>Umuarama</option>
-            <option>Alto Umuarama</option>
-            <option>Custódio Pereira</option>
-            <option>Aclimação</option>
-            <option>Mansões Aeroporto</option>
-            <option>Alvorada</option>
-            <option>Novo Mundo</option>
-            <option>Nova Alvorada</option>
-            <option>Morumbi</option>
-            <option>Residencial Integração</option>
-            <option>Morada dos Pássaros</option>
-            <option>Jardim Ipanema</option>
-            <option>Portal do Vale</option>
-            <option>Granja Marileusa</option>
-            <option>Grand Ville</option>
-            <option>Cruzeiro dos Peixotos</option>
-            <option>Martinésia</option>
-            <option>Tapuirama</option>
-            <option>Miraporanga</option>
-            <option>Miranda</option>
-          </select>
-        </div>
-        <div class="col-sm-2">
-          <label>Preço Mínimo</label>
-          <input id="precoMinimo" class="form-control" />
-        </div>
-        <div class="col-sm-2">
-          <label>Preço Máximo</label>
-          <input id="precoMaximo" class="form-control" />
-        </div>
+    <!-- Início Filtros para pesquisar imóveis -->
+    <section class="box-section" style="margin-top: 30px">
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Encontre seu imóvel:</h2>
+        <hr />
+        <br />
+        <form method="GET" action="#">
+          <div class="form-row ">
+            <div class="col-sm-3">
+              <label class="label-cadastro">Propósito</label>
+              <select class="form-control" id="selectProposito">
+                <option>Aquisição</option>
+                <option>Locação</option>
+              </select>
+            </div>
+            <div class="col-sm-5">
+              <label class="label-cadastro">Bairro</label>
+              <select class="form-control" id="selectBairro">
+                <option>Centro</option>
+                <option>Fundinho</option>
+                <option>Nossa Senhora Aparecida</option>
+                <option>Martins</option>
+                <option>Osvaldo Rezende</option>
+                <option>Bom Jesus</option>
+                <option>Brasil</option>
+                <option>Cazeca</option>
+                <option>Lídice</option>
+                <option>Daniel Fonseca</option>
+                <option>Tabajaras </option>
+                <option>Presidente Roosevelt</option>
+                <option>Jardim Brasília</option>
+                <option>São José</option>
+                <option>Marta Helena</option>
+                <option>Pacaembu</option>
+                <option>Santa Rosa</option>
+                <option>Residencial Gramado</option>
+                <option>Nossa Senhora das Graças</option>
+                <option>Minas Gerais</option>
+                <option>Distrito Industrial Norte</option>
+                <option>Maravilha</option>
+                <option>Jaraguá</option>
+                <option>Planalto</option>
+                <option>Chácaras Tubalina</option>
+                <option>Chácaras Panorama</option>
+                <option>Luizote de Freitas</option>
+                <option>Jardim das Palmeiras</option>
+                <option>Jardim Patrícia</option>
+                <option>Jardim Holanda</option>
+                <option>Jardim Europa</option>
+                <option>Jardim Canaã</option>
+                <option>Mansour</option>
+                <option>Dona Zulmira</option>
+                <option>Taiaman</option>
+                <option>Guarani</option>
+                <option>Tocantins</option>
+                <option>Morada Nova</option>
+                <option>Morada do Sol</option>
+                <option>Monte Hebron</option>
+                <option>Residencial Pequis</option>
+                <option>Tubalina</option>
+                <option>Cidade Jardim</option>
+                <option>Nova Uberlândia</option>
+                <option>Patrimônio</option>
+                <option>Morada da Colina</option>
+                <option>Vigilato Pereira</option>
+                <option>Saraiva</option>
+                <option>Lagoinha</option>
+                <option>Carajás</option>
+                <option>Pampulha</option>
+                <option>Jardim Karaíba</option>
+                <option>Jardim Inconfidência</option>
+                <option>Santa Luzia</option>
+                <option>Granada</option>
+                <option>São Jorge</option>
+                <option>Laranjeiras</option>
+                <option>Shopping Park</option>
+                <option>Jardim Sul</option>
+                <option>Gávea</option>
+                <option>Seringueiras</option>
+                <option>Santa Mônica</option>
+                <option>Tibery</option>
+                <option>Segismundo Pereira</option>
+                <option>Umuarama</option>
+                <option>Alto Umuarama</option>
+                <option>Custódio Pereira</option>
+                <option>Aclimação</option>
+                <option>Mansões Aeroporto</option>
+                <option>Alvorada</option>
+                <option>Novo Mundo</option>
+                <option>Nova Alvorada</option>
+                <option>Morumbi</option>
+                <option>Residencial Integração</option>
+                <option>Morada dos Pássaros</option>
+                <option>Jardim Ipanema</option>
+                <option>Portal do Vale</option>
+                <option>Granja Marileusa</option>
+                <option>Grand Ville</option>
+                <option>Cruzeiro dos Peixotos</option>
+                <option>Martinésia</option>
+                <option>Tapuirama</option>
+                <option>Miraporanga</option>
+                <option>Miranda</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Preço Mínimo</label>
+              <input maxlength="24" id="precoMinimo" class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Preço Máximo</label>
+              <input maxlength="24" id="precoMaximo" class="form-control" />
+            </div>
+          </div>
+          <br />
+          <div class="form-row">
+            <div class="col-sm-12">
+              <label class="label-cadastro">Outras Informações</label>
+              <input id="outrasInfo" class="form-control" />
+            </div>
+          </div>
+          <br />
+          <div class="form-row">
+            <button
+              id="botaoDivPesquisa"
+              type="button"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Pesquisar
+            </button>
+          </div>
+        </form>
       </div>
-      <br />
-      <div class="row">
-        <div class="col-sm-12">
-          <label>Outras Informações</label>
-          <input id="outrasInfo" class="form-control" />
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <button
-          id="botaoDivPesquisa"
-          style="width: 400px; margin: 0 auto"
-          type="button"
-          class="btn btn-primary"
-        >
-          Pesquisar
-        </button>
-      </div>
-    </div>
-    <br /><br /><br />
+    </section>
+    <!-- Fim filtros para pesquisa de imóveis -->
     <div
       id="divPesquisa"
       class="divPesquisa"
@@ -520,16 +530,56 @@
             <br />
             <p>Apartamento bonito</p>
             <h5>FOTOS:</h5>
-            <img src="../../imgs/ap11.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap12.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap13.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap14.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap15.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap16.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap17.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap18.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap19.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap110.jpg" class="rounded img-modal" alt="..." />
+            <img
+              src="../../imgs/ap11.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap12.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap13.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap14.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap15.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap16.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap17.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap18.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap19.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap110.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
           </div>
           <div class="modal-footer">
             <button
@@ -562,17 +612,61 @@
             <br />
             <p>Apartamento bonito</p>
             <h5>FOTOS:</h5>
-            <img src="../../imgs/ap21.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap22.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap23.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap24.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap25.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap26.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap27.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap28.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap29.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap210.jpg" class="rounded img-modal" alt="..." />
-            <img src="../../imgs/ap211.jpg" class="rounded img-modal" alt="..." />
+            <img
+              src="../../imgs/ap21.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap22.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap23.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap24.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap25.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap26.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap27.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap28.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap29.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap210.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
+            <img
+              src="../../imgs/ap211.jpg"
+              class="rounded img-modal"
+              alt="..."
+            />
           </div>
           <div class="modal-footer">
             <button
