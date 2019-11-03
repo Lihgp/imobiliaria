@@ -38,19 +38,14 @@ $("#botaoDivPesquisa").click(function() {
   $("#divPesquisa2").show();
 });
 
-// Máscaras para os campos input
-$(document).ready(function() {
-  $("#precoMinimo").mask("#.##0,00", { reverse: true });
-  $("#precoMaximo").mask("#.##0,00", { reverse: true });
-  $("#cep").mask("00000-000");
-  $("#numero").mask("#");
-  $("#cpf").mask("000.000.000-00");
-  $("#celular").mask("#0000-0000", { reverse: true });
-  $("#telefone").mask("#0000-0000", { reverse: true });
-  $("#outroTelefone").mask("#0000-0000", { reverse: true });
-  $("#estado").mask("AA");
-  $("#dataIngresso").mask("00/00/0000");
-  $("#salario").mask("#.##0,00", { reverse: true });
+// Função para alterar os campos do formulário ao selecionar CASA ou APARTAMENTO no cadastro de imóveis
+$("#categoriaImovel").change(function() {
+  let tipoImovel = document.getElementById("categoriaImovel").value;
+  if (tipoImovel === "casa" || tipoImovel === "") {
+    $("#formApartamento").css("display", "none");
+  } else if (tipoImovel === "apartamento") {
+    $("#formApartamento").css("display", "inline");
+  }
 });
 
 // Função de validação dos campos
@@ -77,3 +72,32 @@ $(document).ready(function() {
     false
   );
 })();
+
+// Tudo que será feito PRIMEIRO
+$(document).ready(function() {
+  // Máscaras para os campos input
+  // Dinheiro
+  $(
+    "#vlrImovel, #vlrCondominio, #area, #precoMinimo, #precoMaximo, #salario"
+  ).mask("#.##0,00", {
+    reverse: true
+  });
+  // Cep
+  $("#cep").mask("00000-000");
+  // Um número
+  $("#numero").mask("#");
+  // Dois números
+  $(
+    "#andar, #qtdQuartos, #qtdSuites, #qtdSalaEstar, #qtdSalaJantar, #nroVagaGaragem"
+  ).mask("00");
+  // Cpf
+  $("#cpf").mask("000.000.000-00");
+  // Celular
+  $("#celular, #telefone, #outroTelefone").mask("#0000-0000", {
+    reverse: true
+  });
+  // Duas letras
+  $("#estado").mask("AA");
+  // Data
+  $("#dataIngresso").mask("00/00/0000");
+});
