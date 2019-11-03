@@ -131,10 +131,7 @@ function cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone
     $sqlCadastrarFuncionario = "INSERT INTO funcionario(nome, telefone, telefoneCelular, telefoneContato, cpf, cargo, salario, cep, logradouro, numero, estado, cidade, bairro)
         VALUES ('$nome', '$telefone', '$telefoneCelular', '$outroTelefone', '$cpf', '$cargo', '$salario', '$cep', '$logradouro', '$numero', '$estado', '$cidade', '$bairro')";
 
-    $sqlSelectFuncionario = "SELECT f.codFuncionario FROM funcionario f where f.cpf = $cpf";
-    if ($conn->query($sqlCadastrarFuncionario))
-        $result = $conn->query($sqlSelectFuncionario);
-    else 
+    if (!$conn->query($sqlCadastrarFuncionario))
         throw new Exception("Erro ao cadastrar Funcionário.");
     
     return $conn->insert_id;
