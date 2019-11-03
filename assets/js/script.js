@@ -46,8 +46,11 @@ $(document).ready(function() {
   $("#numero").mask("#");
   $("#cpf").mask("000.000.000-00");
   $("#celular").mask("#0000-0000", { reverse: true });
+  $("#telefone").mask("#0000-0000", { reverse: true });
   $("#outroTelefone").mask("#0000-0000", { reverse: true });
   $("#estado").mask("AA");
+  $("#dataIngresso").mask("00/00/0000");
+  $("#salario").mask("#.##0,00", { reverse: true });
 });
 
 // Função de validação dos campos
