@@ -132,7 +132,7 @@
     </nav>
     <!--Fim Barra de Navegação-->
     <br /><br /><br /><br /><br /><br />
-    <form>
+    <form action="../../server/cadastroFuncionario.php" method = "post">
       <div class="container">
         <h1>Cadastrar Funcionário</h1>
         <hr />
@@ -142,6 +142,7 @@
           <div class="col-sm-10">
             <input
               type="text"
+              name="nome"
               class="form-control"
               id="nome"
               placeholder="Nome"
@@ -153,6 +154,7 @@
           <div class="col-sm-4">
             <input
               type="text"
+              name="telefone"
               class="form-control"
               id="telefone"
               placeholder="Telefone"
@@ -163,6 +165,7 @@
           <div class="col-sm-4">
             <input
               type="text"
+              name="cpf"
               class="form-control"
               id="cpf"
               placeholder="Cpf"
@@ -174,6 +177,7 @@
           <div class="col-sm-10">
             <input
               type="text"
+              name='endereco'
               class="form-control"
               id="endereco"
               placeholder="Endereço"
@@ -187,6 +191,7 @@
           <div class="col-sm-4">
             <input
               type="text"
+              name="telefoneContato"
               class="form-control"
               id="telefoneContato"
               placeholder="Telefone Contato"
@@ -198,6 +203,7 @@
           <div class="col-sm-4">
             <input
               type="text"
+              name="telefoneCelular"
               class="form-control"
               id="telefoneCelular"
               placeholder="Telefone Celular"
@@ -211,6 +217,7 @@
           <div class="col-sm-2">
             <input
               type="date"
+              name="dataIngressao"
               class="form-control"
               id="dataIngressao"
               placeholder="Data Ingresso"
@@ -221,6 +228,7 @@
           <div class="col-sm-2">
             <input
               type="text"
+              name="cargo"
               class="form-control"
               id="cargo"
               placeholder="Cargo"
@@ -231,9 +239,32 @@
           <div class="col-sm-2">
             <input
               type="text"
+              name="salario"
               class="form-control"
               id="salario"
               placeholder="Salário"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="loginFuncionario" class="col-sm-2 col-form-label">Login</label>
+          <div class="col-sm-3">
+            <input
+              type="text"
+              name="loginFuncionario"
+              class="form-control"
+              id="loginFuncionario"
+              placeholder="Login"
+            />
+          </div>
+          <label for="senha" class="col-sm-1 col-form-label">Senha</label>
+          <div class="col-sm-3">
+            <input
+              type="text"
+              name="senha"
+              class="form-control"
+              id="senha"
+              placeholder="Senha"
             />
           </div>
         </div>
