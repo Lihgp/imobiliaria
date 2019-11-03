@@ -213,7 +213,6 @@
               <input
                 required
                 name="celular"
-                name="telefone"
                 maxlength="10"
                 class="form-control"
                 id="celular"
@@ -267,12 +266,12 @@
               >Cargo</label
             >
             <div class="col-sm-6">
-              <select required class="form-control" id="selectCargo">
-                <option value="solteiro">Solteiro</option>
-                <option value="casado">Casado</option>
-                <option value="casado">Separado</option>
-                <option value="casado">Divorciado</option>
-                <option value="casado">Viúvo</option>
+              <select required class="form-control" id="cargo" name="cargo">
+                <option value="0">Solteiro</option>
+                <option value="1">Casado</option>
+                <option value="2">Separado</option>
+                <option value="3">Divorciado</option>
+                <option value="4">Viúvo</option>
               </select>
             </div>
             <label for="salario" class="col-sm-2 col-form-label label-cadastro"
