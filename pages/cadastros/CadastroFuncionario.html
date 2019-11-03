@@ -25,6 +25,32 @@
 
     <!-- Importações para usar as máscaras -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <script>
+      function cadastrarFuncionario() {
+        var formFuncionario = document.getElementById("formFuncionario");
+        var formData = new FormData(formFuncionario);
+
+        $.ajax({
+          url: "../../server/cadastroFuncionario.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          processData: false,
+          contentType: false,
+
+          success: function(result) {
+            if (result.substring(0, 2) == "OK") {
+              alert("Funcionário cadastrado com sucesso!");
+              document.getElementById("formFuncionario").reset();
+            } else alert(result);
+          },
+          error: function(xhr, status, error) {
+            alert(xhr.responseText);
+          }
+        });
+      }
+    </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -143,11 +169,12 @@
       <div class="container caixa-telas-restritas">
         <h2 class="titulo-telas-restritas">Cadastrar Funcionário</h2>
         <hr />
+        <!-- action="../../server/cadastroFuncionario.php" -->
         <form
-          action="../../server/cadastroFuncionario.php"
+          id="formFuncionario"
+          name="formFuncionario"
           method="post"
-          class="needs-validation"
-          novalidate
+          onsubmit="cadastrarFuncionario()"
         >
           <h4 class="subtitulo">Dados Pessoais e Gerais</h4>
           <div class="form-group row">
@@ -173,6 +200,7 @@
             <div class="col-sm-2">
               <input
                 required
+                name="telefone"
                 maxlength="10"
                 class="form-control"
                 id="telefone"
@@ -184,6 +212,8 @@
             <div class="col-sm-2">
               <input
                 required
+                name="celular"
+                name="telefone"
                 maxlength="10"
                 class="form-control"
                 id="celular"
@@ -197,6 +227,7 @@
             <div class="col-sm-2">
               <input
                 required
+                name="outroTelefone"
                 maxlength="10"
                 class="form-control"
                 id="outroTelefone"
@@ -264,7 +295,13 @@
               >Cep</label
             >
             <div class="col-sm-2">
-              <input required type="text" class="form-control" id="cep" />
+              <input
+                required
+                type="text"
+                class="form-control"
+                id="cep"
+                name="cep"
+              />
             </div>
             <label
               for="logradouro"
@@ -276,6 +313,7 @@
                 required
                 maxlength="255"
                 type="text"
+                name="logradouro"
                 class="form-control"
                 id="logradouro"
               />
@@ -284,7 +322,13 @@
               >Número</label
             >
             <div class="col-sm-2">
-              <input required maxlength="4" class="form-control" id="numero" />
+              <input
+                required
+                maxlength="4"
+                class="form-control"
+                id="numero"
+                name="numero"
+              />
             </div>
           </div>
 
@@ -296,6 +340,7 @@
               <input
                 required
                 type="text"
+                name="estado"
                 class="form-control"
                 id="estado"
                 placeholder="UF"
@@ -310,6 +355,7 @@
                 required
                 maxlength="255"
                 type="text"
+                name="cidade"
                 class="form-control"
                 id="cidade"
               />
@@ -323,6 +369,7 @@
                 required
                 maxlength="255"
                 type="text"
+                name="bairro"
                 class="form-control"
                 id="bairro"
               />
@@ -331,7 +378,7 @@
           <h4 class="subtitulo">Login</h4>
           <div class="form-group row">
             <label
-              for="loginFuncionario"
+              for="usuarioFuncionario"
               class="col-sm-1 col-form-label label-cadastro"
               >Login</label
             >
