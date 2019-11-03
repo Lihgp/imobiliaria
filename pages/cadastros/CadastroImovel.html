@@ -2,11 +2,15 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
+    <title>Cadastro de Imóvel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
@@ -18,8 +22,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Importações para usar as máscaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
   </head>
-  <body>
+  <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
     <nav
       class="navbar navbar-expand-md navbar-main fixed-top"
@@ -46,7 +53,7 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active home" href="../../index.html">Home</a>
+              <a class="nav-link active home" href="../../index.html">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -131,247 +138,282 @@
       </div>
     </nav>
     <!--Fim Barra de Navegação-->
-    <br /><br /><br /><br /><br /><br />
-    <form>
-      <div class="container">
-        <h1>Cadastrar Imovél</h1>
+    <section class="box-section" style="margin-top: 30px">
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Cadastrar Imóvel</h2>
         <hr />
-        <br />
-        <div class="form-group row">
-          <div class="col-sm-2">
-            <label class="col-form-label">Opção</label>
-          </div>
-          <div class="col-sm-4">
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="venda"
-                value="venda"
-                checked
-              />
-              <label class="form-check-label" for="venda">
-                Venda
-              </label>
+        <form action="#" method="post" class="needs-validation" novalidate>
+          <div class="form-group row">
+            <label
+              for="categoriaImovel"
+              class="col-sm-3 col-form-label label-cadastro"
+              >Categoria</label
+            >
+            <div class="col-sm-3">
+              <select required class="form-control" id="categoriaImovel">
+                <option value="">Selecione uma categoria</option>
+                <option value="casa">Casa</option>
+                <option value="apartamento">Apartamento</option>
+              </select>
             </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="locacao"
-                value="locacao"
-              />
-              <label class="form-check-label" for="locacao">
-                Locação
-              </label>
+            <label
+              for="finalidade"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Finalidade</label
+            >
+            <div class="col-sm-3">
+              <select required class="form-control" id="finalidade">
+                <option value="">Selecione uma finalidade</option>
+                <option value="venda">Venda</option>
+                <option value="locacao">Locação</option>
+              </select>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="qtdQuartos" class="col-sm-3 col-form-label"
-            >Quantidade de Quartos</label
-          >
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="qtdQuartos"
-              placeholder=""
-            />
-          </div>
-          <label for="qtdSuites" class="col-sm-3 col-form-label"
-            >Quantidade de Suítes</label
-          >
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="qtdSuites"
-              placeholder=""
-            />
-          </div>
-          <label for="qtdSalaEstar" class="col-sm-3 col-form-label"
-            >Quantidade de Salas de Estar</label
-          >
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="qtdSalaEstar"
-              placeholder=""
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="qtdSalaJantar" class="col-sm-3 col-form-label"
-            >Quantidade de Salas de Jantar</label
-          >
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="qtdSalaJantar"
-              placeholder=""
-            />
-          </div>
-          <label for="nroVagaGaragem" class="col-sm-3 col-form-label"
-            >Nº Vagas na Garagem</label
-          >
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="nroVagaGaragem"
-              placeholder=""
-            />
-          </div>
-          <label for="area" class="col-sm-3 col-form-label">Área</label>
-          <div class="col-sm-1">
-            <input
-              type="number"
-              class="form-control"
-              id="area"
-              placeholder=""
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-2">
-            <label class="col-form-label">Armário Embutido</label>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="sim"
-                value="sim"
-                checked
-              />
-              <label class="form-check-label" for="sim">
-                Sim
-              </label>
+          <h4 class="subtitulo">Informações do imóvel</h4>
+          <div class="form-group row">
+            <label
+              for="qtdQuartos"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Nº Quartos</label
+            >
+            <div class="col-sm-1">
+              <input required class="form-control" id="qtdQuartos" />
             </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="nao"
-                value="nao"
-              />
-              <label class="form-check-label" for="nao">
-                Não
-              </label>
+            <label
+              for="qtdSuites"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Nº Suítes</label
+            >
+            <div class="col-sm-1">
+              <input required class="form-control" id="qtdSuites" />
+            </div>
+            <label
+              for="qtdSalaEstar"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Nº Salas de Estar</label
+            >
+            <div class="col-sm-1">
+              <input required class="form-control" id="qtdSalaEstar" />
+            </div>
+            <label
+              for="qtdSalaJantar"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Nº Salas de Jantar</label
+            >
+            <div class="col-sm-1">
+              <input required class="form-control" id="qtdSalaJantar" />
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="descricao" class="col-sm-2 col-form-label"
-            >Descrição</label
-          >
-          <div class="col-sm-10">
-            <input
-              type="text"
-              class="form-control"
-              id="descricao"
-              placeholder=""
-            />
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-2"><label>Categoria</label></div>
-          <div class="col-sm-8">
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="casa"
-                value="casa"
-                checked
-              />
-              <label class="form-check-label" for="casa">
-                Casa
-              </label>
+
+          <div class="form-group row">
+            <label
+              for="nroVagaGaragem"
+              class="col-sm-2 col-form-label label-cadastro"
+              >Nº Vagas na Garagem</label
+            >
+            <div class="col-sm-1">
+              <input required class="form-control" id="nroVagaGaragem" />
             </div>
-            <div class="form-check form-check-inline">
+            <label for="area" class="col-sm-1 col-form-label label-cadastro"
+              >Área</label
+            >
+            <div class="col-sm-2">
               <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="apartamento"
-                value="apartamento"
+                maxlength="12"
+                placeholder="m²"
+                required
+                class="form-control"
+                id="area"
               />
-              <label class="form-check-label" for="apartamento">
-                Apartamento
-              </label>
+            </div>
+            <div
+              class="label-check label-cadastro col-sm-3 custom-control custom-checkbox"
+            >
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="armarioEmbutido"
+              />
+              <label class="custom-control-label" for="armarioEmbutido"
+                >Armário Embutido</label
+              >
             </div>
           </div>
-        </div>
-        <div class="form-group row" id="formularioApartamento">
-          <label for="andar" class="col-sm-2 col-form-label">Andar</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="andar" placeholder="" />
-          </div>
-          <label for="vlrCondominio" class="col-sm-2 col-form-label"
-            >Valor do Condomínio</label
-          >
-          <div class="col-sm-2">
-            <input
-              type="number"
-              class="form-control"
-              id="vlrCondominio"
-              placeholder=""
-            />
-          </div>
-          <div class="col-sm-2">
-            <label class="col-form-label">Portaria 24h</label>
-          </div>
-          <div class="col-sm-2">
-            <div class="form-check form-check-inline">
+
+          <div class="form-group row">
+            <label
+              for="descricao"
+              class="col-sm-1 col-form-label label-cadastro"
+              >Descrição</label
+            >
+            <div class="col-sm-11">
               <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="sim"
-                value="sim"
-                checked
+                maxlength="1000"
+                type="text"
+                class="form-control"
+                id="descricao"
               />
-              <label class="form-check-label" for="sim">
-                Sim
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="gridRadios"
-                id="nao"
-                value="nao"
-              />
-              <label class="form-check-label" for="nao">
-                Não
-              </label>
             </div>
           </div>
-        </div>
-        <br /><br />
-        <div class="form-group row">
-          <button
-            type="submit"
-            class="btn btn-success btn-lg"
-            style="width: 200px; margin: 0 auto"
-          >
-            Salvar
-          </button>
-        </div>
+          <div style="display: none" id="formApartamento">
+            <div class="form-group row">
+              <label for="andar" class="col-sm-1 col-form-label label-cadastro"
+                >Andar</label
+              >
+              <div class="col-sm-1">
+                <input
+                  required
+                  maxlength="2"
+                  type="text"
+                  class="form-control"
+                  id="andar"
+                />
+              </div>
+              <label
+                for="vlrCondominio"
+                class="col-sm-3 col-form-label label-cadastro"
+                >Valor do Condomínio</label
+              >
+              <div class="col-sm-3">
+                <input
+                  required
+                  maxlength="16"
+                  class="form-control"
+                  id="vlrCondominio"
+                />
+              </div>
+              <div
+                class="label-check label-cadastro col-sm-3 custom-control custom-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="portaria24"
+                />
+                <label class="custom-control-label" for="portaria24"
+                  >Portaria 24 horas</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="proprietario"
+              class="col-sm-1 col-form-label label-cadastro"
+              >Proprietário</label
+            >
+            <div class="col-sm-11">
+              <select required class="form-control" id="proprietario">
+                <option value="">Selecione um proprietário</option>
+                <option value="solteiro">Solteiro</option>
+                <option value="casado">Casado</option>
+                <option value="casado">Separado</option>
+                <option value="casado">Divorciado</option>
+                <option value="casado">Viúvo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="vlrImovel"
+              class="col-sm-5 col-form-label label-cadastro"
+              >Valor do Imóvel</label
+            >
+            <div class="col-sm-3">
+              <input
+                required
+                maxlength="16"
+                class="form-control"
+                id="vlrImovel"
+              />
+            </div>
+          </div>
+          <h4 class="subtitulo">Endereço</h4>
+          <div class="form-group row">
+            <label for="cep" class="col-sm-1 col-form-label label-cadastro"
+              >Cep</label
+            >
+            <div class="col-sm-2">
+              <input required type="text" class="form-control" id="cep" />
+            </div>
+            <label
+              for="logradouro"
+              class="col-sm-1 col-form-label label-cadastro"
+              >Logradouro</label
+            >
+            <div class="col-sm-5">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="logradouro"
+              />
+            </div>
+            <label for="numero" class="col-sm-1 col-form-label label-cadastro"
+              >Número</label
+            >
+            <div class="col-sm-2">
+              <input required maxlength="4" class="form-control" id="numero" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="estado" class="col-sm-1 col-form-label label-cadastro"
+              >Estado</label
+            >
+            <div class="col-sm-2">
+              <input
+                required
+                type="text"
+                class="form-control"
+                id="estado"
+                placeholder="UF"
+              />
+            </div>
+
+            <label for="cidade" class="col-sm-1 col-form-label label-cadastro"
+              >Cidade</label
+            >
+            <div class="col-sm-4">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="cidade"
+              />
+            </div>
+
+            <label for="bairro" class="col-sm-1 col-form-label label-cadastro"
+              >Bairro</label
+            >
+            <div class="col-sm-3">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="bairro"
+              />
+            </div>
+          </div>
+
+          <br /><br />
+          <div class="form-group row">
+            <button
+              type="submit"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+        <!-- Fim parte de cadastrar funcionário -->
       </div>
-    </form>
-    <!-- JavaScript -->
+    </section>
     <script src="../../assets/js/script.js"></script>
   </body>
 </html>
