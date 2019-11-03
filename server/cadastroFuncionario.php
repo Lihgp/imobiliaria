@@ -85,7 +85,7 @@ if ($login == "")
 if ($senha == "")
     throw new Exception("A senha do funcionário deve ser fornecido.");
 
-verificaCpfJaCadastrado($cpf, $conn);
+// verificaCpfJaCadastrado($cpf, $conn);
 
 try 
 {
