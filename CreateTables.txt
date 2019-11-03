@@ -1,0 +1,67 @@
+CREATE TABLE funcionario (
+    codFuncionario bigint NOT NULL AUTO_INCREMENT,
+    nome varchar(255) NOT NULL,
+    telefone varchar(10) NOT NULL,
+    cpf varchar(14) NOT NULL,
+    telefoneContato varchar(10) NOT NULL,
+    telefoneCelular varchar(10) NOT NULL,
+    dataIngressao date NOT NULL,
+    cargo tinyint NOT NULL,
+    salario decimal(18,2) NOT NULL,
+    cep varchar(9) NOT NULL,
+    logradouro varchar(255) NOT NULL,
+    numero int(4) NOT NULL,
+    bairro varchar(255) NOT NULL,
+    estado char(2) NOT NULL,
+    cidade varchar(255) NOT NULL,
+    PRIMARY KEY (codFuncionario)
+);
+
+CREATE TABLE usuario ( 
+codUsuario bigint NOT NULL AUTO_INCREMENT, 
+codFuncionario bigint NOT NULL, 
+desLogin varchar(30) NOT NULL, 
+desSenha varchar(30) NOT NULL, 
+PRIMARY KEY (codUsuario), 
+FOREIGN KEY (codFuncionario) REFERENCES funcionario(codFuncionario) 
+);
+
+CREATE TABLE clienteProprietario ( 
+codCliente bigint NOT NULL AUTO_INCREMENT, 
+cpf varchar(14) NOT NULL, 
+nome varchar(255) NOT NULL, 
+telefoneCelular varchar(10) NOT NULL,
+telefoneOutro varchar(10) NOT NULL,
+email varchar(255) NOT NULL,
+sexo char(1) NOT NULL,
+estadoCivil varchar(20) NOT NULL,
+profissao varchar(255) NOT NULL,
+cep varchar(9) NOT NULL,
+logradouro varchar(255) NOT NULL,
+numero int(4) NOT NULL,
+bairro varchar(255) NOT NULL,
+cidade varchar(255) NOT NULL,
+estado char(2) NOT NULL,
+PRIMARY KEY (codCliente)
+);
+
+CREATE TABLE imovelCasa ( 
+codImovelCasa bigint NOT NULL AUTO_INCREMENT, 
+qtdQuarto int, 
+qtdSuite int, 
+qtdSalaEstar int, 
+qtdSalaJantar int,
+nroVagaGaragem int,
+area decimal(8,2) NOT NULL,
+armarioEmbutido bit NOT NULL,
+descricao varchar(1000) NOT NULL,
+bairro varchar(255) NOT NULL,
+logradouro varchar(255) NOT NULL,
+cep varchar(9) NOT NULL,
+numeroResidencia varchar(5) NOT NULL,
+valorVenda decimal(18,2),
+valorAluguel decimal(18,2),
+codCliente bigint NOT NULL,
+PRIMARY KEY (codImovelCasa),
+FOREIGN KEY (codCliente) REFERENCES clienteproprietario(codCliente) 
+);
