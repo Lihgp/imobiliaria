@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Listagem de Funcionário</title>
+    <title>Buscar Funcionários</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Font Awesome  -->
@@ -25,6 +25,71 @@
 
     <!-- Importações para usar as máscaras -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        buscaFuncionario();
+      });
+
+      function carregar(funcionario) {
+        debugger;
+        // Limpa o Tbody para evitar duplicação
+        document.getElementById("tabela-funcionario").innerHTML = "";
+
+        for (let index = 0; index < funcionario.length; index++) {
+          var newRow = document.createElement("tr");
+          newRow.insertCell(0).innerHTML = funcionario[index].codFuncionario;
+          newRow.insertCell(1).innerHTML = funcionario[index].nome;
+          newRow.insertCell(2).innerHTML = funcionario[index].telefone;
+          newRow.insertCell(3).innerHTML = funcionario[index].cpf;
+          newRow.insertCell(4).innerHTML = funcionario[index].cargo;
+          newRow.insertCell(5).innerHTML = funcionario[index].telefoneCelular;
+          document.getElementById("tabela-funcionario").appendChild(newRow);
+        }
+      }
+
+      function buscaFuncionario(nome, cpf, telefone, cargo, telefoneCelular) {
+        debugger;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function(e) {
+          if (xmlhttp.status == 200) {
+            if (xmlhttp.responseText != "") {
+              try {
+                debugger;
+                funcionario = JSON.parse(xmlhttp.responseText);
+                carregar(funcionario);
+              } catch (e) {
+                debugger;
+                alert(
+                  "A string retornada pelo servidor não é um JSON válido: " +
+                    xmlhttp.responseText
+                );
+              }
+            } else alert("Nenhum resultado encontrado.");
+          }
+        };
+        var arquivo = "../../server/buscaFuncionario.php";
+        if (nome === undefined || nome === "") nome = "";
+        if (cpf === undefined || cpf === "") cpf = "";
+        if (cargo === undefined || cargo === "") cargo = "Todos";
+        if (telefone === undefined || telefone === "") telefone = "";
+        if (telefoneCelular === undefined || telefoneCelular === "")
+          telefoneCelular = "";
+
+        var filtro = "?nome="
+          .concat(nome)
+          .concat("&cpf=")
+          .concat(cpf)
+          .concat("&telefone=")
+          .concat(telefone)
+          .concat("&cargo=")
+          .concat(cargo)
+          .concat("&telefoneCelular=")
+          .concat(telefoneCelular);
+
+        xmlhttp.open("GET", arquivo + filtro, true);
+        xmlhttp.send();
+      }
+    </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -148,48 +213,57 @@
           <div class="form-row">
             <div class="col-sm-8">
               <label class="label-cadastro">Nome</label>
-              <input id="nome" class="form-control" />
+              <input name="nome" id="nome" class="form-control" />
             </div>
             <div class="col-sm-2">
               <label class="label-cadastro">CPF</label>
-              <input id="cpf" class="form-control" />
+              <input id="cpf" name="cpf" class="form-control" />
             </div>
             <div class="col-sm-2">
               <label class="label-cadastro">Telefone</label>
-              <input maxlength="10" id="telefone" class="form-control" />
+              <input
+                maxlength="10"
+                name="telefone"
+                id="telefone"
+                class="form-control"
+              />
             </div>
           </div>
+
           <br />
           <div class="form-row">
             <div class="col-sm-8">
               <label class="label-cadastro">Cargo</label>
-              <select class="form-control" id="selectCargo">
-                <option value="todos">Todos</option>
-                <option value="solteiro">Solteiro</option>
-                <option value="casado">Casado</option>
-                <option value="casado">Separado</option>
-                <option value="casado">Divorciado</option>
-                <option value="casado">Viúvo</option>
+              <select class="form-control" id="cargo">
+                <option value="Todos">Todos</option>
+                <option value="Auxiliar Administrativo"
+                  >Auxiliar Administrativo</option
+                >
+                <option value="Gerente">Gerente</option>
+                <option value="Corrente">Corretor</option>
+                <option value="Recepcionista">Recepcionista</option>
+                <option value="Captador">Captador</option>
               </select>
             </div>
             <div class="col-sm-2">
-              <label class="label-cadastro">Data de Ingresso</label>
+              <label class="label-cadastro">Telefone Celular</label>
               <input
-                placeholder="Ex.: 00/00/0000"
-                id="dataIngresso"
+                maxlength="10"
+                name="telefoneCelular"
+                id="telefoneCelular"
                 class="form-control"
               />
-            </div>
-
-            <div class="col-sm-2">
-              <label class="label-cadastro">Salário</label>
-              <input maxlength="24" id="salario" class="form-control" />
             </div>
           </div>
 
           <br />
           <div class="form-row">
             <button
+              onclick="buscaFuncionario(document.getElementById('nome').value, 
+              document.getElementById('cpf').value, 
+              document.getElementById('telefone').value,
+              document.getElementById('cargo').value,
+              document.getElementById('telefoneCelular').value)"
               id="botaoDivPesquisa"
               type="button"
               class="btn btn-roxo"
@@ -204,41 +278,23 @@
     <!-- Fim Pesquisa Funcionário -->
     <!-- Resultado Pesquisa -->
     <section class="box-section">
-        <div class="table-responsive container caixa-resultado-pesquisa">
+      <div
+        class="scroll-table  table-responsive container caixa-resultado-pesquisa"
+      >
         <table class="table table-striped" id="listagem-resposta">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">Nome</th>
               <th scope="col">Telefone</th>
-              <th scope="col">CPF</th>              
+              <th scope="col">CPF</th>
               <th scope="col">Cargo</th>
-              <th scope="col">Data Ingresso</th>
-              <th scope="col">Salário</th>
+              <th scope="col">Telefone Celular</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>FulanoFulanoFulanoFulanoF</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Gerente</td>
-              <td>10/05/2000</td>
-              <td>R$30.000,00</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Gerente</td>
-              <td>3232-3232</td>
-              <td>R$30.000,00</td>
-            </tr>
-            
-          </tbody>
+          <tbody id="tabela-funcionario"></tbody>
         </table>
+      </div>
     </section>
     <!-- JavaScript -->
     <script src="../../assets/js/script.js"></script>

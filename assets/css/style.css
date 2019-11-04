@@ -379,3 +379,10 @@ table tr:hover {
 #login:hover {
   color: rgb(125, 125, 126);
 }
+
+.scroll-table {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+  display: block;
+}
