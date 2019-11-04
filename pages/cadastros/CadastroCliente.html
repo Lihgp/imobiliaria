@@ -25,6 +25,40 @@
 
     <!-- Importações para usar as máscaras -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          $("#formCliente").submit(function(e) {
+            return false;
+          });
+        });
+  
+        function cadastrarCliente() {
+          var formCliente = document.getElementById("formCliente");
+          var formData = new FormData(formCliente);
+  
+          $.ajax({
+            url: "../../server/cadastroCliente.php",
+            method: "POST",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+  
+            success: function(result) {
+              if (result.substring(0, 2) == "OK") {
+                alert("Cliente cadastrado com sucesso!");
+                document.getElementById("formCliente").reset();
+              } else {
+                alert(result);
+              }
+            },
+            error: function(xhr, status, error) {
+              alert(xhr.responseText);
+            }
+          });
+        }
+      </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -143,7 +177,7 @@
       <div class="container caixa-telas-restritas">
         <h2 class="titulo-telas-restritas">Cadastrar Cliente</h2>
         <hr />
-        <form method="POST" action="#" class="needs-validation" novalidate>
+        <form method="POST" id="formCliente" name="formCliente" onsubmit="cadastrarCliente()">
           <h4 class="subtitulo">Dados Pessoais</h4>
           <div class="form-group row">
             <label for="nome" class="col-sm-1 col-form-label label-cadastro"
@@ -156,6 +190,7 @@
                 type="text"
                 class="form-control"
                 id="nome"
+                name="nome"
                 placeholder="Nome completo"
               />
             </div>
@@ -165,7 +200,7 @@
               >Cpf</label
             >
             <div class="col-sm-2">
-              <input required type="text" class="form-control" id="cpf" />
+              <input required type="text" class="form-control" id="cpf" name="cpf"/>
             </div>
 
             <label class="col-sm-1 col-form-label label-cadastro">Sexo</label>
@@ -175,9 +210,9 @@
                   required
                   class="form-check-input"
                   type="radio"
-                  name="gridRadios"
+                  name="sexo"
                   id="masculino"
-                  value="masculino"
+                  value="m"
                 />
                 <label class="form-check-label label-check" for="masculino">
                   Masculino
@@ -188,9 +223,9 @@
                   required
                   class="form-check-input"
                   type="radio"
-                  name="gridRadios"
+                  name="sexo"
                   id="feminino"
-                  value="feminino"
+                  value="f"
                 />
                 <label class="form-check-label label-check" for="feminino">
                   Feminino
@@ -203,7 +238,7 @@
               >Estado Civil</label
             >
             <div class="col-sm-3">
-              <select required class="form-control" id="selectEstadoCivil">
+              <select required class="form-control" id="selectEstadoCivil" name="estadoCivil">
                 <option value="solteiro">Solteiro</option>
                 <option value="casado">Casado</option>
                 <option value="casado">Separado</option>
@@ -219,6 +254,7 @@
             >
             <div class="col-sm-2">
               <input
+                name="celular"
                 required
                 maxlength="10"
                 class="form-control"
@@ -231,7 +267,7 @@
               >Outro Telefone</label
             >
             <div class="col-sm-2">
-              <input maxlength="10" class="form-control" id="outroTelefone" />
+              <input maxlength="10" class="form-control" id="outroTelefone" name="outroTelefone"/>
             </div>
             <label for="email" class="col-sm-1 col-form-label label-cadastro"
               >Email</label
@@ -243,6 +279,7 @@
                 type="email"
                 class="form-control"
                 id="email"
+                name="email"
               />
               <div class="invalid-feedback">
                 Informe um email válido
@@ -263,6 +300,7 @@
                 type="text"
                 class="form-control"
                 id="profissao"
+                name="profissao"
               />
             </div>
           </div>
@@ -272,7 +310,7 @@
               >Cep</label
             >
             <div class="col-sm-2">
-              <input required type="text" class="form-control" id="cep" />
+              <input required type="text" class="form-control" id="cep" name="cep"/>
             </div>
             <label
               for="logradouro"
@@ -286,13 +324,14 @@
                 type="text"
                 class="form-control"
                 id="logradouro"
+                name="logradouro"
               />
             </div>
             <label for="numero" class="col-sm-1 col-form-label label-cadastro"
               >Número</label
             >
             <div class="col-sm-2">
-              <input required maxlength="4" class="form-control" id="numero" />
+              <input required maxlength="4" class="form-control" id="numero" name="numero"/>
             </div>
           </div>
 
@@ -307,6 +346,7 @@
                 class="form-control"
                 id="estado"
                 placeholder="UF"
+                name="estado"
               />
             </div>
 
@@ -320,6 +360,7 @@
                 type="text"
                 class="form-control"
                 id="cidade"
+                name="cidade"
               />
             </div>
 
@@ -333,6 +374,7 @@
                 type="text"
                 class="form-control"
                 id="bairro"
+                name="bairro"
               />
             </div>
           </div>

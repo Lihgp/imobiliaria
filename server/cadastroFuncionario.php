@@ -45,7 +45,7 @@ $telefone = filtraEntradaForm($_POST["telefone"]);
 $telefoneCelular = filtraEntradaForm($_POST["telefone"]);
 $outroTelefone = filtraEntradaForm($_POST["outroTelefone"]);
 $cpf = filtraEntradaForm($_POST["cpf"]);
-$dataIngresso = filtraEntradaForm($_POST["dataIngresso"]);
+$dataIngresso = formataDataSalvarBanco(filtraEntradaForm($_POST["dataIngresso"]));
 $cargo = filtraEntradaForm($_POST["cargo"]);
 $salario = converteDecimalSalvarBanco(filtraEntradaForm($_POST["salario"]));
 $cep = filtraEntradaForm($_POST["cep"]);
@@ -82,13 +82,13 @@ if ($numero == "")
 if ($estado == "")
     throw new Exception("O estado do funcionário deve ser fornecido.");
 if ($cidade == "")
-    throw new Exception("A cidade do funcionário deve ser fornecido.");
+    throw new Exception("A cidade do funcionário deve ser fornecida.");
 if ($bairro == "")
     throw new Exception("O bairro do funcionário deve ser fornecido.");
 if ($login == "")
     throw new Exception("O login do funcionário deve ser fornecido.");
 if ($senha == "")
-    throw new Exception("A senha do funcionário deve ser fornecido.");
+    throw new Exception("A senha do funcionário deve ser fornecida.");
 
 verificaCpfJaCadastrado($cpf, $conn);
 
@@ -104,49 +104,49 @@ try
 
 } catch (Exception $e){
     $conn->rollback();
+    $conn->close();
     http_response_code(400);
     throw new Exception($e);
 }
 
-
-    // $sql = "INSERT INTO funcionario(nome, telefone, cpf, endereco, telefoneContato, telefoneCelular, dataIngressao, cargo, salario)
-    // VALUES ('$nome', '$telefone', '$cpf', '$endereco', '$telefoneContato', '$telefoneCelular', '$dataIngressao', '$cargo', '$salario')";
-
-    // $sqlSelect = "SELECT f.codFuncionario FROM funcionario f where f.cpf = $cpf";
-    // if ($conn->query($sql))
-    //     $result = $conn->query($sqlSelect);
-    // else
-    //     echo "Erro na operação: " . $sql . "<br>" . $conn->error;
-
-    // $codInserido = $result->fetch_assoc()["codFuncionario"];
-
-    // $sqlUsuario = "INSERT INTO usuario(codFuncionario, desLogin, desSenha) VALUES ('$codInserido', '$login', '$senha')";
-    // if ($conn->query($sqlUsuario))
-    //     echo "Inserido com sucesso";
-    // else
-    //     echo "Erro na operação: " . $sql . "<br>" . $conn->error;
-
 function cadastrarLoginFuncionario($login, $senha, $codFuncionario, $conn)  {
-    $sqlCadastrarLoginFuncionario = "INSERT INTO usuario(codFuncionario, desLogin, desSenha) VALUES ('$codFuncionario', '$login', '$senha')";
-    if (!$conn->query($sqlCadastrarLoginFuncionario))
-        throw new Exception("Erro ao cadastrar Login do Usuário.");
+    $sqlCadastrarLoginFuncionario = "INSERT INTO usuario(codFuncionario, desLogin, desSenha) VALUES (?, ?, ?)";
+
+    if (!$stmt = $conn->prepare($sqlCadastrarLoginFuncionario))
+        throw new Exception("Falha na operacao prepare: " . $conn->error);
+
+    if (!$stmt->bind_param("iss", $codFuncionario, $login, $senha))
+        throw new Exception("Falha na operacao bind_param: " . $stmt->error);
+
+    if (!$result = $stmt->execute())
+        throw new Exception("Falha na operacao execute: " . $stmt->error);
 }
 
 function cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $dataIngresso, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn) {
     $sqlCadastrarFuncionario = "INSERT INTO funcionario(nome, telefone, telefoneCelular, telefoneContato, cpf, dataIngressao, cargo, salario, cep, logradouro, numero, estado, cidade, bairro)
-        VALUES ('$nome', '$telefone', '$telefoneCelular', '$outroTelefone', '$cpf', '$cargo', '$salario', '$cep', '$dataIngresso', '$logradouro', '$numero', '$estado', '$cidade', '$bairro')";
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    if (!$conn->query($sqlCadastrarFuncionario))
-        throw new Exception("Erro ao cadastrar Funcionário.");
+    if (!$stmt = $conn->prepare($sqlCadastrarFuncionario))
+        throw new Exception("Falha na operacao prepare: " . $conn->error);
+
+    if (!$stmt->bind_param("ssssssidssisss", $nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $dataIngresso, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro))
+        throw new Exception("Falha na operacao bind_param: " . $stmt->error);
+
+    if (!$stmt->execute())
+        throw new Exception("Falha na operacao execute: " . $stmt->error);
     
     return $conn->insert_id;
 }
 
 function verificaCpfJaCadastrado($cpf, $conn) {
-    $sqlVerificaCpf = "SELECT * from funcionario f where f.cpf = $cpf";
+    $sqlVerificaCpf = "SELECT f.codFuncionario from funcionario f where f.cpf = '$cpf'";
 
-    if ($conn->query($sqlVerificaCpf) && $conn->query($sqlVerificaCpf)->num_rows > 0)
+   if ($result = $conn->query($sqlVerificaCpf)) {
+    if ($result->num_rows > 0)
         throw new Exception("O CPF fornecido já está cadastrado.");
+   } else {
+       throw new Exception("Falha na operacao query: ". $conn->error);
+   }
 }
 
 function filtraEntradaForm($data)
@@ -167,8 +167,9 @@ function converteDecimalSalvarBanco($valor) {
     return $valor;
 }
 
-// function formataDataSalvarBanco($data) {
-//     $data = str_replace("")
-// }
+function formataDataSalvarBanco($data) {
+    $data = substr($data, -4)."-".substr($data, 3, 2)."-".substr($data, 0, 2);
+    return $data;
+}
 
 ?>
