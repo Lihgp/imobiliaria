@@ -110,6 +110,16 @@ try
 }
 
 function cadastrarLoginFuncionario($login, $senha, $codFuncionario, $conn)  {
+
+    $sqlVerificaLoginFuncionario = "SELECT * from usuario WHERE desLogin like '$login'";
+
+    if ($result = $conn->query($sqlVerificaLoginFuncionario)) {
+        if ($result->num_rows > 0)
+            throw new Exception("O Login fornecido já está cadastrado.");
+       } else {
+           throw new Exception("Falha na operacao query do login: ". $conn->error);
+       }
+
     $sqlCadastrarLoginFuncionario = "INSERT INTO usuario(codFuncionario, desLogin, desSenha) VALUES (?, ?, ?)";
 
     if (!$stmt = $conn->prepare($sqlCadastrarLoginFuncionario))
