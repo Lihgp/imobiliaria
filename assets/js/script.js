@@ -93,9 +93,12 @@ $(document).ready(function() {
   // Cpf
   $("#cpf").mask("000.000.000-00");
   // Celular
-  $("#celular, #telefone, #outroTelefone").mask("#0000-0000", {
-    reverse: true
-  });
+  $("#celular, #telefone, #outroTelefone, #telefoneCelular").mask(
+    "#0000-0000",
+    {
+      reverse: true
+    }
+  );
   // Duas letras
   $("#estado").mask("AA");
   // Data
