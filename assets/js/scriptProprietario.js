@@ -1,5 +1,4 @@
 function carregar(proprietario) {
-  debugger;
   let propId = document.getElementById("proprietario");
   for (let index = 0; index < proprietario.length; index++) {
     option = new Option(
@@ -16,11 +15,9 @@ function buscarProprietarios() {
     if (xmlhttp.status == 200) {
       if (xmlhttp.responseText != "") {
         try {
-          debugger;
           proprietario = JSON.parse(xmlhttp.responseText);
           carregar(proprietario);
         } catch (e) {
-          debugger;
           alert(
             "A string retornada pelo servidor não é um JSON válido: " +
               xmlhttp.responseText

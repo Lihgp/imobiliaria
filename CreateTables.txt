@@ -65,3 +65,17 @@ codCliente bigint NOT NULL,
 PRIMARY KEY (codImovelCasa),
 FOREIGN KEY (codCliente) REFERENCES clienteproprietario(codCliente) 
 );
+
+CREATE TABLE endereco ( 
+codEndereco bigint NOT NULL AUTO_INCREMENT, 
+cep varchar(9) NOT NULL,
+logradouro varchar(255) NOT NULL, 
+bairro varchar(255) NOT NULL,
+cidade varchar(255) NOT NULL,
+estado varchar(2) NOT NULL, 
+PRIMARY KEY (codEndereco)
+);
+
+INSERT INTO `endereco`(`codEndereco`, `cep`, `logradouro`, `bairro`, `cidade`, `estado`) VALUES (1,"38408-224","Rua Pedro José Samora","Santa Mônica","Uberlândia","MG")
+
+INSERT INTO `endereco`(`codEndereco`, `cep`, `logradouro`, `bairro`, `cidade`, `estado`) VALUES (2,"38408-267","Av. Segismundo Pereira","Segismundo","Uberlândia","MG")
