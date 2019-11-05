@@ -25,6 +25,40 @@
 
     <!-- Importações para usar as máscaras -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          $("#formImovel").submit(function(e) {
+            return false;
+          });
+        });
+  
+        function cadastrarImovel() {
+          var formImovel = document.getElementById("formImovel");
+          var formData = new FormData(formImovel);
+  
+          $.ajax({
+            url: "../../server/cadastroImovel.php",
+            method: "POST",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+  
+            success: function(result) {
+              if (result.substring(0, 2) == "OK") {
+                alert("Imóvel cadastrado com sucesso!");
+                document.getElementById("formImovel").reset();
+              } else {
+                alert(result);
+              }
+            },
+            error: function(xhr, status, error) {
+              alert(xhr.responseText);
+            }
+          });
+        }
+      </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -142,7 +176,11 @@
       <div class="container caixa-telas-restritas">
         <h2 class="titulo-telas-restritas">Cadastrar Imóvel</h2>
         <hr />
-        <form action="#" method="post" class="needs-validation" novalidate>
+        <form
+        id="formImovel"
+        name="formImovel"
+        method="post"
+        onsubmit="cadastrarImovel()">
           <div class="form-group row">
             <label
               for="categoriaImovel"
@@ -150,7 +188,7 @@
               >Categoria</label
             >
             <div class="col-sm-3">
-              <select required class="form-control" id="categoriaImovel">
+              <select required class="form-control" id="categoriaImovel" name="categoriaImovel">
                 <option value="">Selecione uma categoria</option>
                 <option value="casa">Casa</option>
                 <option value="apartamento">Apartamento</option>
@@ -162,7 +200,7 @@
               >Finalidade</label
             >
             <div class="col-sm-3">
-              <select required class="form-control" id="finalidade">
+              <select required class="form-control" id="finalidade" name="finalidade">
                 <option value="">Selecione uma finalidade</option>
                 <option value="venda">Venda</option>
                 <option value="locacao">Locação</option>
@@ -177,7 +215,7 @@
               >Nº Quartos</label
             >
             <div class="col-sm-1">
-              <input required class="form-control" id="qtdQuartos" />
+              <input required class="form-control" id="qtdQuartos" name="qtdQuartos/>
             </div>
             <label
               for="qtdSuites"
@@ -185,61 +223,9 @@
               >Nº Suítes</label
             >
             <div class="col-sm-1">
-              <input required class="form-control" id="qtdSuites" />
-            </div>
-            <label
-              for="qtdSalaEstar"
-              class="col-sm-2 col-form-label label-cadastro"
-              >Nº Salas de Estar</label
-            >
-            <div class="col-sm-1">
-              <input required class="form-control" id="qtdSalaEstar" />
-            </div>
-            <label
-              for="qtdSalaJantar"
-              class="col-sm-2 col-form-label label-cadastro"
-              >Nº Salas de Jantar</label
-            >
-            <div class="col-sm-1">
-              <input required class="form-control" id="qtdSalaJantar" />
+              <input required class="form-control" id="qtdSuites" name="qtdSuites/>
             </div>
           </div>
-
-          <div class="form-group row">
-            <label
-              for="nroVagaGaragem"
-              class="col-sm-2 col-form-label label-cadastro"
-              >Nº Vagas na Garagem</label
-            >
-            <div class="col-sm-1">
-              <input required class="form-control" id="nroVagaGaragem" />
-            </div>
-            <label for="area" class="col-sm-1 col-form-label label-cadastro"
-              >Área</label
-            >
-            <div class="col-sm-2">
-              <input
-                maxlength="12"
-                placeholder="m²"
-                required
-                class="form-control"
-                id="area"
-              />
-            </div>
-            <div
-              class="label-check label-cadastro col-sm-3 custom-control custom-checkbox"
-            >
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="armarioEmbutido"
-              />
-              <label class="custom-control-label" for="armarioEmbutido"
-                >Armário Embutido</label
-              >
-            </div>
-          </div>
-
           <div class="form-group row">
             <label
               for="descricao"
@@ -252,7 +238,38 @@
                 type="text"
                 class="form-control"
                 id="descricao"
+                name="descricao"
               />
+            </div>
+          </div>
+          <div style="display: none" id="formCasa">
+            <div class="form-group row">
+              <label for="area" class="col-sm-1 col-form-label label-cadastro"
+                >Área</label
+              >
+              <div class="col-sm-2">
+                <input
+                  maxlength="12"
+                  placeholder="m²"
+                  required
+                  class="form-control"
+                  id="area"
+                  name="area"
+                />
+              </div>
+              <div
+                class="label-check label-cadastro col-sm-2 custom-control custom-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="piscina"
+                  name="piscina"
+                />
+                <label class="custom-control-label" for="piscina"
+                  >Piscina</label
+                >
+              </div>
             </div>
           </div>
           <div style="display: none" id="formApartamento">
@@ -267,6 +284,7 @@
                   type="text"
                   class="form-control"
                   id="andar"
+                  name="andar"
                 />
               </div>
               <label
@@ -280,23 +298,24 @@
                   maxlength="16"
                   class="form-control"
                   id="vlrCondominio"
+                  name="vlrCondominio"
                 />
               </div>
-              <div
-                class="label-check label-cadastro col-sm-3 custom-control custom-checkbox"
-              >
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="portaria24"
-                />
-                <label class="custom-control-label" for="portaria24"
-                  >Portaria 24 horas</label
-                >
-              </div>
+              <label for="numApto" class="col-sm-2 col-form-label label-cadastro"
+              >Nº do Apartamento</label
+            >
+            <div class="col-sm-2">
+              <input
+                required
+                maxlength="10"
+                type="text"
+                class="form-control"
+                id="numApto"
+                name="numApto"
+              />
+            </div>
             </div>
           </div>
-
           <div class="form-group row">
             <label
               for="proprietario"
@@ -304,7 +323,7 @@
               >Proprietário</label
             >
             <div class="col-sm-11">
-              <select required class="form-control" id="proprietario">
+              <select required class="form-control" id="proprietario" name="proprietario">
                 <option value="">Selecione um proprietário</option>
                 <option value="solteiro">Solteiro</option>
                 <option value="casado">Casado</option>
@@ -315,9 +334,22 @@
             </div>
           </div>
           <div class="form-group row">
+            <label for="bairro" class="col-sm-1 col-form-label label-cadastro"
+              >Bairro</label
+            >
+            <div class="col-sm-6">
+              <input
+                required
+                maxlength="255"
+                type="text"
+                class="form-control"
+                id="bairro"
+                name="bairro"
+              />
+            </div>
             <label
               for="vlrImovel"
-              class="col-sm-5 col-form-label label-cadastro"
+              class="col-sm-2 col-form-label label-cadastro"
               >Valor do Imóvel</label
             >
             <div class="col-sm-3">
@@ -326,80 +358,10 @@
                 maxlength="16"
                 class="form-control"
                 id="vlrImovel"
+                name="vlrImovel"
               />
             </div>
           </div>
-          <h4 class="subtitulo">Endereço</h4>
-          <div class="form-group row">
-            <label for="cep" class="col-sm-1 col-form-label label-cadastro"
-              >Cep</label
-            >
-            <div class="col-sm-2">
-              <input required type="text" class="form-control" id="cep" />
-            </div>
-            <label
-              for="logradouro"
-              class="col-sm-1 col-form-label label-cadastro"
-              >Logradouro</label
-            >
-            <div class="col-sm-5">
-              <input
-                required
-                maxlength="255"
-                type="text"
-                class="form-control"
-                id="logradouro"
-              />
-            </div>
-            <label for="numero" class="col-sm-1 col-form-label label-cadastro"
-              >Número</label
-            >
-            <div class="col-sm-2">
-              <input required maxlength="4" class="form-control" id="numero" />
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="estado" class="col-sm-1 col-form-label label-cadastro"
-              >Estado</label
-            >
-            <div class="col-sm-2">
-              <input
-                required
-                type="text"
-                class="form-control"
-                id="estado"
-                placeholder="UF"
-              />
-            </div>
-
-            <label for="cidade" class="col-sm-1 col-form-label label-cadastro"
-              >Cidade</label
-            >
-            <div class="col-sm-4">
-              <input
-                required
-                maxlength="255"
-                type="text"
-                class="form-control"
-                id="cidade"
-              />
-            </div>
-
-            <label for="bairro" class="col-sm-1 col-form-label label-cadastro"
-              >Bairro</label
-            >
-            <div class="col-sm-3">
-              <input
-                required
-                maxlength="255"
-                type="text"
-                class="form-control"
-                id="bairro"
-              />
-            </div>
-          </div>
-
           <br /><br />
           <div class="form-group row">
             <button
