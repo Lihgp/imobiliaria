@@ -28,6 +28,7 @@
 
     <script>
       $(document).ready(function() {
+        buscarProprietarios();
         $("#formImovel").submit(function(e) {
           return false;
         });
@@ -353,11 +354,6 @@
                 name="proprietario"
               >
                 <option value="">Selecione um proprietário</option>
-                <option value="solteiro">Solteiro</option>
-                <option value="casado">Casado</option>
-                <option value="casado">Separado</option>
-                <option value="casado">Divorciado</option>
-                <option value="casado">Viúvo</option>
               </select>
             </div>
           </div>
@@ -405,6 +401,7 @@
       </div>
     </section>
     <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/scriptProprietario.js"></script>
   </body>
 </html>
 <style></style>
