@@ -2,21 +2,19 @@
 
 require "connection/conexao.php";
 
-class Funcionario 
+class Cliente 
 {
-	public $codFuncionario;
+	public $codCliente;
 	public $nome;
 	public $cpf;
-	public $telefone;
-	public $cargo;
-	public $salario;
 	public $telefoneCelular;
+	public $sexo;
 }
 try
 {
 	$conn = conectaBanco();
 
-	$nome = $telefoneCelular = $telefone = $cpf = $cargo = $salario = "";
+	$nome = $telefoneCelular = $cpf = $sexo = "";
 
 	if (isset($_GET["nome"]))
 		$nome = $_GET["nome"];
@@ -24,33 +22,24 @@ try
 	if (isset($_GET["cpf"]))
 		$cpf = $_GET["cpf"];
 		
-	if (isset($_GET["telefone"]))
-		$telefone = $_GET["telefone"];
-
 	if (isset($_GET["telefoneCelular"]))
 		$telefoneCelular = $_GET["telefoneCelular"];
 
-	if (isset($_GET["cargo"]))
-		$cargo = $_GET["cargo"];
-
-	if (isset($_GET["salario"]))
-		$salario = $_GET["salario"];
-
-	
+	if (isset($_GET["sexo"]))
+		$sexo = $_GET["sexo"];
 
 	$SQL = "
 		SELECT *
-		FROM funcionario
+		FROM clienteProprietario
 		WHERE (nome like '%$nome%')
 		AND (cpf like '%$cpf%')
-		AND (telefone like '%$telefone%')
 		AND (telefoneCelular like '%$telefoneCelular%')
-		AND (cargo like '$cargo' or '$cargo' like 'Todos')
+		AND (sexo like '$sexo' or '$sexo' like 'Todos')
 	";
 	
 	
 	if (! $result = $conn->query($SQL))
-		throw new Exception('Ocorreu uma falha ao buscar o funcionario: ' . $conn->error);
+		throw new Exception('Ocorreu uma falha ao buscar o cliente: ' . $conn->error);
 
 	 // Prepara a consulta
 	 if (!$stmt = $conn->prepare($SQL))
@@ -61,12 +50,12 @@ try
 		throw new Exception("Falha na operacao execute: " . $stmt->error);
 
 
-	$arrayFuncionarios = array();
+	$arrayClientes = array();
 	while ($row = $result->fetch_array(MYSQLI_ASSOC))
 	{
-		$arrayFuncionarios[] = $row;
+		$arrayClientes[] = $row;
 	} 
-	echo json_encode($arrayFuncionarios);
+	echo json_encode($arrayClientes);
 	
 }
 catch (Exception $e)

@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <title>Listagem de Clientes Cadastrados</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
 
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
@@ -19,6 +22,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Importações para usar as máscaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        buscaCliente();
+      });
+    </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -133,156 +145,84 @@
     </nav>
     <!--Fim Barra de Navegação-->
 
-    <!-- Pesquisa de Funcionario -->
+    <!-- Pesquisa de Cliente -->
     <section class="box-section" style="margin-top: 30px">
-      <div class="container">
-        <h2>Listagem de Clientes Cadastrados</h2>
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Buscar Clientes</h2>
         <hr />
-        <div class="row">
-          <div class="col-sm-8">
-            <label>Nome</label>
-            <input id="nome" class="form-control" />
+        <form method="GET">
+          <div class="form-row">
+            <div class="col-sm-12">
+              <label class="label-cadastro">Nome</label>
+              <input name="nome" id="nome" class="form-control" />
+            </div>
           </div>
-          <div class="col-sm-2">
-            <label>Telefone Contato</label>
-            <input id="telefoneCon" class="form-control" />
+          <br />
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label class="label-cadastro">CPF</label>
+              <input id="cpf" name="cpf" class="form-control" />
+            </div>
+            <div class="col-sm-4">
+              <label class="label-cadastro">Telefone Celular</label>
+              <input
+                maxlength="10"
+                name="telefoneCelular"
+                id="telefoneCelular"
+                class="form-control"
+              />
+            </div>
+            <div class="col-sm-4">
+              <label class="label-cadastro">Sexo</label>
+              <select class="form-control" id="sexo">
+                <option value="Todos">Todos</option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
+              </select>
+            </div>
           </div>
-          <div class="col-sm-2">
-            <label>CPF</label>
-            <input id="cpf" class="form-control" />
+          <br />
+          <div class="form-row">
+            <button
+              onclick="buscaCliente(document.getElementById('nome').value, 
+                  document.getElementById('cpf').value, 
+                  document.getElementById('telefoneCelular').value,
+                  document.getElementById('sexo').value)"
+              id="botaoDivPesquisa"
+              type="button"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Pesquisar
+            </button>
           </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-8">
-            <label>Endereço</label>
-            <input id="endereco" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Sexo</label>
-            <input id="telefoneCon" class="form-control" />
-          </div>
-          <div class="col-sm-2">
-            <label>Estado Civil</label>
-            <input id="telefoneCel" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-6">
-            <label>Email</label>
-            <input id="datIng" class="form-control" />
-          </div>
-          <div class="col-sm-6">
-            <label>Profissão</label>
-            <input id="cargo" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-          <button
-            id="botaoDivPesquisa"
-            style="width: 400px; margin: 0 auto"
-            type="button"
-            class="btn btn-primary"
-          >
-            Pesquisar
-          </button>
-        </div>
+        </form>
       </div>
     </section>
-    <!-- Fim Pesquisa Funcionário -->
+    <!-- Fim Pesquisa Cliente -->
+
     <!-- Resultado Pesquisa -->
     <section class="box-section">
-      <div class="container">
+      <div
+        class="scroll-table  table-responsive container caixa-resultado-pesquisa"
+      >
         <table class="table table-striped" id="listagem-resposta">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">Nome</th>
-              <th scope="col">Telefone Contato</th>
               <th scope="col">CPF</th>
-              <th scope="col">Endereço</th>
+              <th scope="col">Telefone Celular</th>
               <th scope="col">Sexo</th>
-              <th scope="col">Estado Civil</th>
-              <th scope="col">Email</th>
-              <th scope="col">Profissão</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>10/05/2000</td>
-              <td>Profissão</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>teste@gmail.com</td>
-              <td>Profissão</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>teste@gmail.com</td>
-              <td>Profissão</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>teste@gmail.com</td>
-              <td>Profissão</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>teste@gmail.com</td>
-              <td>Profissão</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Fulano</td>
-              <td>99999-9999</td>
-              <td>111.111.111-11</td>
-              <td>Av. Teste 456</td>
-              <td>Feminino</td>
-              <td>Solteiro</td>
-              <td>teste@gmail.com</td>
-              <td>Profissão</td>
-            </tr>
-          </tbody>
+          <tbody id="tabela-cliente"></tbody>
         </table>
       </div>
     </section>
     <!-- JavaScript -->
     <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/scriptCliente.js"></script>
 
     <!-- <script src="/font-awesome/js/all.js"></script> -->
   </body>
