@@ -27,38 +27,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-          $("#formImovel").submit(function(e) {
-            return false;
-          });
+      $(document).ready(function() {
+        $("#formImovel").submit(function(e) {
+          return false;
         });
-  
-        function cadastrarImovel() {
-          var formImovel = document.getElementById("formImovel");
-          var formData = new FormData(formImovel);
-  
-          $.ajax({
-            url: "../../server/cadastroImovel.php",
-            method: "POST",
-            data: formData,
-            cache: false,
-            processData: false,
-            contentType: false,
-  
-            success: function(result) {
-              if (result.substring(0, 2) == "OK") {
-                alert("Imóvel cadastrado com sucesso!");
-                document.getElementById("formImovel").reset();
-              } else {
-                alert(result);
-              }
-            },
-            error: function(xhr, status, error) {
-              alert(xhr.responseText);
+      });
+
+      function cadastrarImovel() {
+        var formImovel = document.getElementById("formImovel");
+        var formData = new FormData(formImovel);
+
+        $.ajax({
+          url: "../../server/cadastroImovel.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          processData: false,
+          contentType: false,
+
+          success: function(result) {
+            if (result.substring(0, 2) == "OK") {
+              alert("Imóvel cadastrado com sucesso!");
+              document.getElementById("formImovel").reset();
+            } else {
+              alert(result);
             }
-          });
-        }
-      </script>
+          },
+          error: function(xhr, status, error) {
+            alert(xhr.responseText);
+          }
+        });
+      }
+    </script>
   </head>
   <body class="box-section">
     <!-- Barra de Navegação RESTRITA-->
@@ -177,10 +177,11 @@
         <h2 class="titulo-telas-restritas">Cadastrar Imóvel</h2>
         <hr />
         <form
-        id="formImovel"
-        name="formImovel"
-        method="post"
-        onsubmit="cadastrarImovel()">
+          id="formImovel"
+          name="formImovel"
+          method="post"
+          onsubmit="cadastrarImovel()"
+        >
           <div class="form-group row">
             <label
               for="categoriaImovel"
@@ -188,7 +189,12 @@
               >Categoria</label
             >
             <div class="col-sm-3">
-              <select required class="form-control" id="categoriaImovel" name="categoriaImovel">
+              <select
+                required
+                class="form-control"
+                id="categoriaImovel"
+                name="categoriaImovel"
+              >
                 <option value="">Selecione uma categoria</option>
                 <option value="casa">Casa</option>
                 <option value="apartamento">Apartamento</option>
@@ -200,7 +206,12 @@
               >Finalidade</label
             >
             <div class="col-sm-3">
-              <select required class="form-control" id="finalidade" name="finalidade">
+              <select
+                required
+                class="form-control"
+                id="finalidade"
+                name="finalidade"
+              >
                 <option value="">Selecione uma finalidade</option>
                 <option value="venda">Venda</option>
                 <option value="locacao">Locação</option>
@@ -215,7 +226,12 @@
               >Nº Quartos</label
             >
             <div class="col-sm-1">
-              <input required class="form-control" id="qtdQuartos" name="qtdQuartos/>
+              <input
+                required
+                class="form-control"
+                id="qtdQuartos"
+                name="qtdQuartos"
+              />
             </div>
             <label
               for="qtdSuites"
@@ -223,7 +239,12 @@
               >Nº Suítes</label
             >
             <div class="col-sm-1">
-              <input required class="form-control" id="qtdSuites" name="qtdSuites/>
+              <input
+                required
+                class="form-control"
+                id="qtdSuites"
+                name="qtdSuites"
+              />
             </div>
           </div>
           <div class="form-group row">
@@ -301,19 +322,21 @@
                   name="vlrCondominio"
                 />
               </div>
-              <label for="numApto" class="col-sm-2 col-form-label label-cadastro"
-              >Nº do Apartamento</label
-            >
-            <div class="col-sm-2">
-              <input
-                required
-                maxlength="10"
-                type="text"
-                class="form-control"
-                id="numApto"
-                name="numApto"
-              />
-            </div>
+              <label
+                for="numApto"
+                class="col-sm-2 col-form-label label-cadastro"
+                >Nº do Apartamento</label
+              >
+              <div class="col-sm-2">
+                <input
+                  required
+                  maxlength="10"
+                  type="text"
+                  class="form-control"
+                  id="numApto"
+                  name="numApto"
+                />
+              </div>
             </div>
           </div>
           <div class="form-group row">
@@ -323,7 +346,12 @@
               >Proprietário</label
             >
             <div class="col-sm-11">
-              <select required class="form-control" id="proprietario" name="proprietario">
+              <select
+                required
+                class="form-control"
+                id="proprietario"
+                name="proprietario"
+              >
                 <option value="">Selecione um proprietário</option>
                 <option value="solteiro">Solteiro</option>
                 <option value="casado">Casado</option>
