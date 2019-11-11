@@ -10,6 +10,7 @@ function carregar(proprietario) {
 }
 
 function buscarProprietarios() {
+  debugger;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onload = function(e) {
     if (xmlhttp.status == 200) {
