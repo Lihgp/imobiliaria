@@ -2,12 +2,15 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Listagem de Clientes Cadastrados</title>
+    <title>Buscar Interesses</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+
     <!-- Css Principal -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
@@ -135,48 +138,77 @@
 
     <!-- Pesquisa de Funcionario -->
     <section class="box-section" style="margin-top: 30px">
-      <div class="container">
-        <h2>Listagem de Interesses</h2>
+      <div class="container caixa-telas-restritas">
+        <h2 class="titulo-telas-restritas">Buscar Interesses</h2>
         <hr />
-        <div class="row">
-          <div class="col-sm-12">
-            <label>Nome Completo</label>
-            <input id="nome" class="form-control" />
+        <form method="GET">
+          <div class="form-row">
+            <div class="col-sm-8">
+              <label class="label-cadastro">Nome</label>
+              <input name="nome" id="nome" class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">CPF</label>
+              <input id="cpf" name="cpf" class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Telefone</label>
+              <input
+                maxlength="10"
+                name="telefone"
+                id="telefone"
+                class="form-control"
+              />
+            </div>
           </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-6">
-            <label>Email</label>
-            <input id="email" class="form-control" />
+
+          <br />
+          <div class="form-row">
+            <div class="col-sm-8">
+              <label class="label-cadastro">Cargo</label>
+              <select class="form-control" id="cargo">
+                <option value="Todos">Todos</option>
+                <option value="Auxiliar Administrativo"
+                  >Auxiliar Administrativo</option
+                >
+                <option value="Gerente">Gerente</option>
+                <option value="Corrente">Corretor</option>
+                <option value="Recepcionista">Recepcionista</option>
+                <option value="Captador">Captador</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label class="label-cadastro">Telefone Celular</label>
+              <input
+                maxlength="10"
+                name="telefoneCelular"
+                id="telefoneCelular"
+                class="form-control"
+              />
+            </div>
           </div>
-          <div class="col-sm-6">
-            <label>Telefone</label>
-            <input id="tel" class="form-control" />
+
+          <br />
+          <div class="form-row">
+            <button
+              onclick="buscaFuncionario(document.getElementById('nome').value, 
+            document.getElementById('cpf').value, 
+            document.getElementById('telefone').value,
+            document.getElementById('cargo').value,
+            document.getElementById('telefoneCelular').value)"
+              id="botaoDivPesquisa"
+              type="button"
+              class="btn btn-roxo"
+              style="width: 200px; margin: 0 auto"
+            >
+              Pesquisar
+            </button>
           </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-12">
-            <label>Descrição</label>
-            <input id="desc" class="form-control" />
-          </div>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-          <button
-            id="botaoDivPesquisa"
-            style="width: 400px; margin: 0 auto"
-            type="button"
-            class="btn btn-primary"
-          >
-            Pesquisar
-          </button>
-        </div>
+        </form>
       </div>
     </section>
     <!-- Fim Pesquisa Funcionário -->
+
     <!-- Resultado Pesquisa -->
     <section class="box-section">
       <div class="container">
