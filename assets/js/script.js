@@ -38,22 +38,6 @@ $("#botaoDivPesquisa").click(function() {
   $("#divPesquisa2").show();
 });
 
-// Função para alterar os campos do formulário ao selecionar CASA ou APARTAMENTO no cadastro de imóveis
-$("#categoriaImovel").change(function() {
-  let tipoImovel = document.getElementById("categoriaImovel").value;
-  if (tipoImovel === "") {
-    $("#formCasa").css("display", "none");
-    $("#formApartamento").css("display", "none");
-  } else if (tipoImovel === "apartamento") {
-    $("#formCasa").css("display", "none");
-    $("#formApartamento").css("display", "inline");
-  } else if (tipoImovel === "casa") {
-    $("#formCasa").css("display", "inline");
-    $("#formApartamento").css("display", "none");
-    
-  }
-});
-
 // Função de validação dos campos
 (function() {
   "use strict";
