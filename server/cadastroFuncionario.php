@@ -103,7 +103,7 @@ try
 
     $codFuncionario = cadastrarFuncionario($nome, $telefone, $telefoneCelular, $outroTelefone, $cpf, $dataIngresso, $cargo, $salario, $cep, $logradouro, $numero, $estado, $cidade, $bairro, $conn);
     cadastrarLoginFuncionario($login, $senha, $codFuncionario, $conn);
-    echo "OK";
+    echo "OK"; 
     $conn->commit();
     $conn->close();
 

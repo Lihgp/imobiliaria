@@ -139,6 +139,23 @@ function cadastrarImovelApto($codImovel, $andar, $vlrCondominio, $numApto, $conn
 }
 
 function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $bairro, $vlrImovel, $descricao, $conn) {
+
+    $nomeImagem = salvarArquivos();
+
+    
+//     if(!file_exists("../imagens")):  
+//         mkdir("../imagens");  
+//    endif;  
+//     $pasta = "../imagens/" . $_FILES["image"]["name"][0];
+//     // move_uploaded_file( $_FILES["image"]["name"][0], $pasta );
+//     // $ftp->upload($_FILES["image"]["name"][0], $pasta);
+//     if (!move_uploaded_file($_FILES['image']['tmp_name'][0], $pasta)):  
+//         $retorno = array('status' => 0, 'mensagem' => 'Houve um erro ao gravar arquivo na pasta de destino!');       
+//         throw new Exception("ASASASsasasasAsASAasSAASA" . $_FILES['image']['tmp_name'][0]) ;
+//         exit();  
+//    endif; 
+//     throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" .$pasta) ;
+
     $sqlCadastrarImovel = "INSERT INTO imovel(codProprietario, finalidade, valorImovel, bairro, numQuarto, numSuite, descricao)
         VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
@@ -157,6 +174,35 @@ function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $
         echo $e->getMessage();
         exit();
     }
+}
+
+function salvarArquivos () {
+    $diretorioBase = "../imagens";
+    if(!file_exists($diretorioBase)):  
+        mkdir($diretorioBase);
+    
+        foreach ($_FILES["image"]["error"] as $key => $error) {
+            if ($error == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES["image"]["tmp_name"][$key];
+                $name = $_FILES["image"]["name"][$key];
+                $arquivo = '/diretorio/arquivo.txt';
+                if (file_exists($arquivo)) {
+                    echo "O arquivo $arquivo existe";
+                } else {
+                    echo "O arquivo $arquivo não existe";
+                }
+                move_uploaded_file($tmp_name, "../imagens/$name");
+            }
+        }
+    $pasta = "../imagens/" . $_FILES["image"]["name"][0];
+    // move_uploaded_file( $_FILES["image"]["name"][0], $pasta );
+    // $ftp->upload($_FILES["image"]["name"][0], $pasta);
+    if (!move_uploaded_file($_FILES['image']['tmp_name'][0], $pasta)):  
+        $retorno = array('status' => 0, 'mensagem' => 'Houve um erro ao gravar arquivo na pasta de destino!');       
+        throw new Exception("ASASASsasasasAsASAasSAASA" . $_FILES['image']['tmp_name'][0]) ;
+        exit();  
+   endif; 
+    throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" .$pasta) ;
 }
 
 function filtraEntradaForm($data)
