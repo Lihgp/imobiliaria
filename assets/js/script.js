@@ -10,6 +10,7 @@ function removeMensagemErro() {
 
 //Função para validar o login
 $("#enviar-login").click(function() {
+  debugger
   var usuario = document.getElementById("user").value;
   var senha = document.getElementById("senha").value;
 
@@ -65,6 +66,13 @@ $("#botaoDivPesquisa").click(function() {
 
 // Tudo que será feito PRIMEIRO
 $(document).ready(function() {
+  // Celular
+  $("#celular, #telefone, #outroTelefone, #telefoneCelular").mask(
+    "#0000-0000",
+    {
+      reverse: true
+    }
+  );
   // Máscaras para os campos input
   // Dinheiro
   $(
@@ -82,13 +90,6 @@ $(document).ready(function() {
   ).mask("00");
   // Cpf
   $("#cpf").mask("000.000.000-00");
-  // Celular
-  $("#celular, #telefone, #outroTelefone, #telefoneCelular").mask(
-    "#0000-0000",
-    {
-      reverse: true
-    }
-  );
   // Duas letras
   $("#estado").mask("AA");
   // Data
