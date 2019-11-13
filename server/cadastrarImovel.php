@@ -103,7 +103,7 @@ try
 }
 
 function cadastrarImovelCasa($codImovel, $area, $piscina, $conn)  {
-    $sqlCadastrarImovelCasa = "INSERT INTO imovelcasa(codImovel , areaTerreno, piscina ) VALUES (?, ?, ?)";
+    $sqlCadastrarImovelCasa = "INSERT INTO imovelCasa(codImovel , area, piscina ) VALUES (?, ?, ?)";
 
     try {
         if (!$stmt = $conn->prepare($sqlCadastrarImovelCasa))
@@ -121,7 +121,7 @@ function cadastrarImovelCasa($codImovel, $area, $piscina, $conn)  {
 }
 
 function cadastrarImovelApto($codImovel, $andar, $vlrCondominio, $numApto, $conn)  {
-    $sqlCadastrarImovelApto = "INSERT INTO imovelapto(codImovel , numApto, andar, vlrCondominio ) VALUES (?, ?, ?, ?)";
+    $sqlCadastrarImovelApto = "INSERT INTO imovelApartamento(codImovel , numApartamento, andar, vlrCondominio ) VALUES (?, ?, ?, ?)";
 
     try {
         if (!$stmt = $conn->prepare($sqlCadastrarImovelApto))
@@ -140,7 +140,6 @@ function cadastrarImovelApto($codImovel, $andar, $vlrCondominio, $numApto, $conn
 
 function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $bairro, $vlrImovel, $descricao, $conn) {
 
-    $nomeImagem = salvarArquivos();
 
     
 //     if(!file_exists("../imagens")):  
@@ -156,7 +155,7 @@ function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $
 //    endif; 
 //     throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" .$pasta) ;
 
-    $sqlCadastrarImovel = "INSERT INTO imovel(codProprietario, finalidade, valorImovel, bairro, numQuarto, numSuite, descricao)
+    $sqlCadastrarImovel = "INSERT INTO imovel(codCliente, finalidade, valorImovel, bairro, qtdQuarto, qtdSuite, descricao)
         VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
     try {
@@ -169,6 +168,7 @@ function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $
         if (!$stmt->execute())
             throw new Exception("Falha na operacao execute: " . $stmt->error);
         
+        $nomeImagem = salvarArquivos($conn->insert_id, $conn);
         return $conn->insert_id;
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -176,33 +176,59 @@ function cadastrarImovel($finalidade, $numQuarto, $numSuite, $codProprietario, $
     }
 }
 
-function salvarArquivos () {
+function salvarArquivos ($codImovel, $conn) {
     $diretorioBase = "../imagens";
-    if(!file_exists($diretorioBase)):  
+    if(!file_exists($diretorioBase))
         mkdir($diretorioBase);
     
-        foreach ($_FILES["image"]["error"] as $key => $error) {
+        // for ($i=0; $i < count($_FILES["imagens"]); $i++) { 
+        //     if ($_FILES["imagens"]["error"][$i] == UPLOAD_ERR_OK)
+        // }
+        $sqlCadastrarImagem = "INSERT INTO imagemImovel(codImovel, nomeImagem)
+        VALUES ( ?, ?)";
+    
+    try {
+        foreach ($_FILES["imagens"]["error"] as $key => $error) {
             if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["image"]["tmp_name"][$key];
-                $name = $_FILES["image"]["name"][$key];
-                $arquivo = '/diretorio/arquivo.txt';
-                if (file_exists($arquivo)) {
-                    echo "O arquivo $arquivo existe";
+                $name = $_FILES["imagens"]["name"][$key];
+                // $name = $_FILES["image"]["name"][$key];
+                // $arquivo = '/diretorio/arquivo.txt';
+                // if (file_exists($arquivo)) {
+                //     echo "O arquivo $arquivo existe";
+                // } else {
+                //     echo "O arquivo $arquivo não existe";
+                // }
+                $pasta = $diretorioBase."/".$_FILES["imagens"]["name"][$key];
+                if (!move_uploaded_file($_FILES['imagens']['tmp_name'][$key], $pasta)) {
+                    echo "Erro ao salvar arquivo: ".$_FILES['imagens']['name'][$key];
+                    exit();
+                // SALVOU A IMAGEM CORRETAMENTE NO SERVIDOR
                 } else {
-                    echo "O arquivo $arquivo não existe";
+                    if (!$stmt = $conn->prepare($sqlCadastrarImagem))
+                        throw new Exception("Falha na operacao prepare: " . $conn->error);
+
+                    if (!$stmt->bind_param("is", $codImovel, $_FILES['imagens']['name'][$key]))
+                        throw new Exception("Falha na operacao bind_param: " . $stmt->error);
+
+                    if (!$stmt->execute())
+                        throw new Exception("Falha na operacao execute: " . $stmt->error);
                 }
-                move_uploaded_file($tmp_name, "../imagens/$name");
+                
             }
         }
-    $pasta = "../imagens/" . $_FILES["image"]["name"][0];
-    // move_uploaded_file( $_FILES["image"]["name"][0], $pasta );
-    // $ftp->upload($_FILES["image"]["name"][0], $pasta);
-    if (!move_uploaded_file($_FILES['image']['tmp_name'][0], $pasta)):  
-        $retorno = array('status' => 0, 'mensagem' => 'Houve um erro ao gravar arquivo na pasta de destino!');       
-        throw new Exception("ASASASsasasasAsASAasSAASA" . $_FILES['image']['tmp_name'][0]) ;
-        exit();  
-   endif; 
-    throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" .$pasta) ;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        exit();
+    }
+//     $pasta = "../imagens/" . $_FILES["image"]["name"][0];
+//     // move_uploaded_file( $_FILES["image"]["name"][0], $pasta );
+//     // $ftp->upload($_FILES["image"]["name"][0], $pasta);
+//     if (!move_uploaded_file($_FILES['image']['tmp_name'][0], $pasta)):  
+//         $retorno = array('status' => 0, 'mensagem' => 'Houve um erro ao gravar arquivo na pasta de destino!');       
+//         throw new Exception("ASASASsasasasAsASAasSAASA" . $_FILES['image']['tmp_name'][0]) ;
+//         exit();  
+//    endif; 
+//     throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" .$pasta) ;
 }
 
 function filtraEntradaForm($data)
@@ -221,6 +247,11 @@ function converteDecimalSalvarBanco($valor) {
         $valor = floatval($valor);
     }
     return $valor;
+}
+
+function formataDataSalvarBanco($data) {
+    $data = substr($data, -4)."-".substr($data, 3, 2)."-".substr($data, 0, 2);
+    return $data;
 }
 
 ?>

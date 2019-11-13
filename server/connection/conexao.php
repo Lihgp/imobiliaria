@@ -1,8 +1,8 @@
 <?php
-define("HOST", "127.0.0.1");
-define("USER", "root");
-define("PASSWORD", "");
-define("DATABASE", "makimobiliaria");
+define("HOST", "ns590.hostgator.com.br");
+define("USER", "makimo61_makizer");
+define("PASSWORD", "makizer");
+define("DATABASE", "makimo61_makimobiliaria");
 
 function conectaBanco() {
     $conn = new mysqli(HOST, USER, PASSWORD, DATABASE);

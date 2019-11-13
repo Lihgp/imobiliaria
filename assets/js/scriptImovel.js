@@ -3,7 +3,7 @@ function cadastrarImovel() {
   var formData = new FormData(formImovel);
 
   $.ajax({
-    url: "../../server/cadastroImovel.php",
+    url: "../../server/cadastrarImovel.php",
     method: "POST",
     data: formData,
     cache: false,

@@ -1,13 +1,13 @@
-<?php
-require "conexao.php";
-require "autenticacao.php";
+<!-- <?php
+#require "conexao.php";
+#require "autenticacao.php";
 
 
-session_start();
-$conn = conectaBanco();
-checkUsuarioLogadoOrDie($conn)
+#session_start();
+#$conn = conectaBanco();
+#checkUsuarioLogadoOrDie($conn)
 
-?>
+#?>
 <!DOCTYPE html>
 <html>
 <body>
@@ -15,4 +15,4 @@ checkUsuarioLogadoOrDie($conn)
 Bem vindo!
 
 </body>
-</html>
+</html> -->

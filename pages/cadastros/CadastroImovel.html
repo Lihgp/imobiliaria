@@ -33,6 +33,33 @@
           return false;
         });
       });
+
+      
+      // function cadastrarImovel() {
+      //   var formImovel = document.getElementById("formImovel");
+      //   var formData = new FormData(formImovel);
+
+      //   $.ajax({
+      //     url: "../../server/cadastrarImovel.php",
+      //     method: "POST",
+      //     data: formData,
+      //     cache: false,
+      //     processData: false,
+      //     contentType: false,
+
+      //     success: function(result) {
+      //       if (result.substring(0, 2) == "OK") {
+      //         alert("Imóvel cadastrado com sucesso!");
+      //         document.getElementById("formImovel").reset();
+      //       } else {
+      //         alert(result);
+      //       }
+      //     },
+      //     error: function(xhr, status, error) {
+      //       alert(xhr.responseText);
+      //     }
+      //   });
+      // }
     </script>
   </head>
   <body class="box-section">
@@ -82,7 +109,7 @@
               >
                 <a
                   class="dropdown-item cadastrar-funcionario"
-                  href="../cadastros/CadastroFuncionario.html"
+                  href="../cadastros/CadastroFuncionario.php"
                   >Funcionários</a
                 >
                 <a
@@ -155,6 +182,7 @@
           id="formImovel"
           name="formImovel"
           method="post"
+          novalidate
           onsubmit="cadastrarImovel()"
         >
           <div class="form-group row">
@@ -365,6 +393,7 @@
             <h4 class="subtitulo">Imagens do Imóvel</h4>
             <input
               multiple="multiple"
+              name="imagens[]"
               type="file"
               class="form-control-file"
               id="imagensImovel"

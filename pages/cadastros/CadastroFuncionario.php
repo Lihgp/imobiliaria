@@ -1,3 +1,10 @@
+<?php
+  session_start();
+
+  if (!isset($_SESSION['autenticado']) || !$_SESSION['autenticado']) {
+    header('Location: ../../index.html');
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -107,7 +114,7 @@
               >
                 <a
                   class="dropdown-item cadastrar-funcionario"
-                  href="../cadastros/CadastroFuncionario.html"
+                  href="../cadastros/CadastroFuncionario.php"
                   >Funcionários</a
                 >
                 <a
@@ -182,6 +189,7 @@
           id="formFuncionario"
           name="formFuncionario"
           method="post"
+          novalidate
           onsubmit="cadastrarFuncionario()"
         >
           <h4 class="subtitulo">Dados Pessoais e Gerais</h4>
